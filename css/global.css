@@ -38,7 +38,15 @@ a:active {
 
 /* ============== Header Elements ================ */
 .header {
+	padding-top: 50px;
+	padding-bottom: 50px;
 	vertical-align: center;
+}
+
+.header-title {
+	text-align: center;
+	font-size: 3em;
+	padding-bottom: 20px;
 }
 
 .header-image {
@@ -47,13 +55,13 @@ a:active {
 
 .header-image img {
 	display: block;
-	vertical-align: center;
 	width: 100%;
 }
 
 #header-text {
 	display: block;
 	vertical-align: center;
+	text-align: left;
 }
 
 #profile-pic {
@@ -66,6 +74,16 @@ a:active {
 
 #intro-blurb {
 
+}
+
+.connect {
+	padding-top: 20px;
+	display: inline-block;
+}
+
+.connect a {
+	padding-left: 7px;
+	padding-right: 7px;
 }
 
 /* ============== Main Content Elements ================ */
