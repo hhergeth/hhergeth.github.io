@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 	<!-- custom css -->
-  	<link type="css/text" rel="stylesheet" href="css/global.css"/>
+  	<link rel="stylesheet" href="css/global.css"/>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 		<div class="container header">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-md-2 header-image">
-					<img class="img-fluid" src=images/icon.jpg/ id="header-image">
+					<img class="img-fluid" src="images/icon.jpg" id="header-image">
 				</div>
 				<div class="col-md-6" id="header-text"> 
 					<h1>Hannes Hergeth</h1>
@@ -62,6 +62,43 @@
 				</div>
 				</div>
 			</div>
+            
+	    	<!-- Bachelor Thesis-->
+			<div class="project-entry container">
+				<div class="row">
+				<div class="project-thumbnail crop col">
+					<img class="" src="images/ba_thesis.jpg"/>
+				</div>
+
+				<div class="project-details col-md-8">
+					<h3 class="project-title">Extending Adaptive Progressive Photon Mapping to Participating Media</h3>
+					<p class="project-subtitle">Bachelor Thesis advised by Prof. Leif Kobbelt at RWTH Aachen</p>
+					<p class="project-description">XXX </p>
+				</div>
+				</div>
+			</div>
+            
+	    	<!-- Sailing Simulator-->
+			<div class="project-entry container">
+				<div class="row">
+				<div class="project-thumbnail crop col">
+					<img class="" src="images/sailingsim.jpg"/>
+				</div>
+
+				<div class="project-details col-md-8">
+					<h3 class="project-title">Game Programming</h3>
+					<p class="project-subtitle">Course at RWTH Aachen, Fall Semester 2016</p>
+					<p class="project-description">Group project where a Sailing Simulator was developed, I focused on the rendering, mainly realistic looking water and reflections.</p>
+
+					<div class="project-resources">
+						<a class="resource-button" href="https://www.graphics.rwth-aachen.de/course/131/"> Course Webpage
+						</a>
+						<a class="resource-button" href="https://github.com/mkohout/sailing-simulator"> Code
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
 
 			<!-- Sword Game-->
 			<div class="project-entry container">
@@ -71,7 +108,7 @@
 				</div>
 
 				<div class="project-details col-md-8">
-					<h3 class="project-title">Sword Game</h3>
+					<h3 class="project-title">Sword Fighting Game</h3>
 					<p class="project-subtitle">Course Project at RWTH Aachen Spring Semester 2014</p>
 					<p class="project-description"> A group project where a demo of a real time action game was developed. My aspect was developing a skeletal animation system where the user could control the hero with a Wii controller.</p>
 
@@ -88,7 +125,46 @@
 		<!-- =========== Research Projects =========== -->
 		<h3 class="section-header">Research Projects</h3>
 		<hr>
-		<div class="section container">
+		<div class="section container">        
+	    	<!-- Nvidia-->
+			<div class="project-entry container">
+				<div class="row">
+				<div class="project-thumbnail crop col">
+					
+				</div>
+
+				<div class="project-details col-md-8">
+					<h3 class="project-title">Research Intern at Nvidia</h3>
+					<p class="project-subtitle">2017</p>
+					<p class="project-description">I worked on a yet unpublished project in the group of Alexander Keller at the Nvidia Advanced Rendering Center in Berlin.</p>
+
+					<div class="project-resources">
+						<a class="resource-button" href="https://github.com/hhergeth/CudaTracerLib"> Github
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
+        
+	    	<!-- RWTH Hiwi-->
+			<div class="project-entry container">
+				<div class="row">
+				<div class="project-thumbnail crop col">
+					<img class="" src="images/quad.JPG"/>
+				</div>
+
+				<div class="project-details col-md-8">
+					<h3 class="project-title">Student Research Assistant RWTH Aachen</h3>
+					<p class="project-subtitle">2013 - 2016</p>
+					<p class="project-description">I worked for Hans-Christian Ebke on the implementation of Multi-Resolution Quad Meshing algorithms which resulted in a paper XXX</p>
+
+					<div class="project-resources">
+						<a class="resource-button" href="https://www.graphics.rwth-aachen.de/publication/03266/"> Publication
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- =========== Personal Projects =========== -->
@@ -104,8 +180,8 @@
 
 				<div class="project-details col-md-8">
 					<h3 class="project-title">CudaTracerLib</h3>
-					<p class="project-subtitle">Personal Project</p>
-					<p class="project-description"> Library for light transport algorithms based on CUDA. </p>
+					<p class="project-subtitle">2012 - ongoing </p>
+					<p class="project-description">A CUDA library for rendering algorithms based on ray tracing. Includes implementations of Bidirectional Path Tracing, Volumetric Probabilistic Progressive Photon Mapping and Vertex Connection and Merging</p>
 
 					<div class="project-resources">
 						<a class="resource-button" href="https://github.com/hhergeth/CudaTracerLib"> Github
@@ -115,12 +191,31 @@
 				</div>
 			</div>
 
+	    	<!-- Cuda Tracer Lib-->
+			<div class="project-entry container">
+				<div class="row">
+				<div class="project-thumbnail crop col">
+					<img class="" src="images/RisenEditor.png"/>
+				</div>
+
+				<div class="project-details col-md-8">
+					<h3 class="project-title">Risen Editor</h3>
+					<p class="project-subtitle">2010 - 2013 </p>
+					<p class="project-description">A D3D11 level editor for a well-known German PC game which enables user modifications. Based on a small engine capable of hardware tessellation, deferred shading and other state-of-the-art algorithms.</p>
+
+					<div class="project-resources">
+						<a class="resource-button" href="https://github.com/hhergeth/RisenEditor"> Github
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
 	    </div>
 	</div>
 
 	<!-- Footer-->
 	<footer class="container-fluid text-center">
-	  <p>© Hannes Hergeth, 2018</p>
+	  <p>Hannes Hergeth, 2018</p>
 	</footer>
 
 
