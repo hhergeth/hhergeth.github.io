@@ -70,12 +70,15 @@ a:active {
 
 /* ============== Main Content Elements ================ */
 .crop {
-    height: 200px;
+	height:auto;
+    width: 100%;
     overflow: hidden;
 }
 
 .crop img {
-    height: 190px;
+	display: block;
+  	width: 100%;
+  	height: auto;
 }
 
 .section {
