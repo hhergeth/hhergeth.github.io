@@ -164,8 +164,7 @@ a:active {
 /* ============== Footer Elements ================ */
 /* Set black background color, white text and some padding */
 footer {
-	background-color: #555;
-	color: white;
+	color: gray;
 	padding: 15px;
 	width:100%;
 	position:relative;
@@ -174,6 +173,13 @@ footer {
 	clear: both;
 }
 
+#credits {
+    font-size: 10pt;
+}
+
+#mini-credits {
+    font-size: 8pt;
+}
 /* ============== Screen-Adaptiveness ================ */
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
