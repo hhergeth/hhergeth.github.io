@@ -3,9 +3,8 @@
 <svg version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	width="40" height="40" 
 	viewBox="0 0 512 512"
-	style="enable-background:new 0 0 512 512;" 
+    width="40" height="40"
 	>
 
 <path d="M426.667,0H85.333c-14.114,0-25.6,11.486-25.6,25.6v460.8c0,14.114,11.486,25.6,25.6,25.6h341.333
