@@ -1,0 +1,161 @@
+
+/* ============== General Elements ================ */
+body{
+	background: #ffffff;
+	font-family: sans-serif;
+	padding: 5px;
+
+	/*Set a variable for the main accent color*/
+	--main-accent-color: #00b3b3;
+	--secondary-accent-color: #196666;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+a:link {
+    color: var(--main-accent-color);
+    text-decoration: none;
+}
+
+a:visited {
+	color: var(--main-accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+	color: var(--secondary-accent-color);
+    text-decoration: underline;
+}
+
+a:active {
+	color: var(--secondary-accent-color);
+    text-decoration: underline;
+}
+
+
+/* ============== Header Elements ================ */
+.header {
+	vertical-align: center;
+}
+
+.header-image {
+	vertical-align: center;
+}
+
+.header-image img {
+	display: block;
+	vertical-align: center;
+	width: 100%;
+}
+
+#header-text {
+	display: block;
+	vertical-align: center;
+}
+
+#profile-pic {
+
+}
+
+#site-title {
+
+}
+
+#intro-blurb {
+
+}
+
+/* ============== Main Content Elements ================ */
+.crop {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.crop img {
+    height: 200px;
+    margin: 0 0 0 -100px;
+}
+
+.section {
+	padding: 20px;
+}
+
+.section-header {
+	text-align: left;
+}
+
+.project-entry {
+	padding-bottom: 40px;
+}
+
+.project-thumbnail {
+}
+
+.project-thumbnail img {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.project-details {
+	text-align: left;
+}
+
+.project-title {
+
+}
+
+.project-subtitle {
+	font-style: italic;
+}
+
+.project-description {
+	
+}
+
+.project-resources {
+	
+}
+
+.resource-button {
+    background-color: white; 
+    border: 1px solid var(--main-accent-color);
+    color: black;
+    border-radius: 4px;
+
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+
+.resource-button:hover {
+	background-color: var(--main-accent-color);
+    border: 1px solid var(--main-accent-color);
+    color: white;
+}
+
+/* ============== Footer Elements ================ */
+/* Set black background color, white text and some padding */
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
+	width:100%;
+	position:relative;
+	bottom:0;
+	left:0;
+	clear: both;
+}
+
+/* ============== Screen-Adaptiveness ================ */
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+}
