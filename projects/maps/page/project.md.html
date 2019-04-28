@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<script> window.markdeepOptions={}; window.markdeepOptions.tocStyle = "none"; </script>
+
+    **Interactive World War 2 Map**
+    
+!!! WARNING
+    NO NAZI
+    
+<p style="text-align: center;">[There is also a full screen version](map.html)</p>
+
+<iframe frameborder="0" style="width: 100%; height: 500px;" src="map.html" name="map">You need a Frames Capable browser to view this content.</iframe>
+
+!!! Tip
+    The data and information shown here is not accurate and only useful for visualization purposes.
+
+# Background
+
+# Front Lines
+
+For the late war the The Chief of Staff of the United States Army has created [bi-monthly maps](https://en.wikisource.org/wiki/Atlas_of_the_World_Battle_Fronts_in_Semimonthly_Phases_to_August_15_1945). I extracted the front line information by applying filters, followed by using OpenCV to extract contours. Since the projection method is known (see above) I then used two points for which pixel and world coordinates were known (Berlin and Warschau) to compute the projection parameters. Given this the projection is inverted for all points on the extracted contours.
+
+Finding maps for the early part of the German-Soviet War was more difficult but there are some in the same style, e.g. on for the [early](https://commons.wikimedia.org/wiki/File:Eastern_Front_1941-06_to_1941-12.png) part of the war. I manually created contours for the timestamps available. Unprojecting is not as easy because the projection method isn't specified. Instead I looked up coordinates for all the cities specified on the map. Given these pixel/coordinate pairs I briefly experimented with some machine learning techniques to approximate the inverse projection. Results were mediocre and I settled for a simple lasso model from scikit-learn. The jump between the two data sources occurs before July 1943.
+
+Please note that the front lines shown on the map are far from accurate. There are many reasons for that:
+- Resolution of the map images. For the set of late war maps, a typical pixel in the image covers an area of size 4km by 2.5km. This is compounded by the scanning process and later by the technique used to identify the front line (which creates small shifts in the image).
+- Potentially inaccuracies in the maps themselves, the Wikipedia pages for the early war maps has some info on that.
+
+All of this results in the front lines often not matching up with geographic features.
+
+# Biographical Data
+
+In general many place names used by the authors can not be found in any standard online map like Google Maps or Openstreet Map. Instead I used the "Übersichtskarte Von Nord-, Mittel- & Osteuropa 1:300.000 (1893 - 1945)" which can be found [here](https://www.landkartenarchiv.de/deutschland_uebersichtskartevonmitteleuropa.php) and [here](http://igrek.amzp.pl/mapindex.php?cat=ME300). These are incredibly useful because they use the same romanized names given in the books. As an alternative the very detailed ["Karte des Deutsches Reiches 1:100 000"](http://igrek.amzp.pl/mapindex.php?cat=GR100) was sometimes of use as well even though there aren't many segments available.
+            
+For most places I was able to match the locations with high certainty. But in general there is a degree of unknown here, for example: Hans Jürgen Hartmann gives "Kurenye" as the location of his unit near the Don in 1942. The closest match I could find on Openstreet Map is [Куренное](https://ru.wikipedia.org/wiki/%D0%9A%D1%83%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5) which is a reasonable assumption given the [context](http://www.294id.de/infanterieregiment-514.html) but could very well be incorrect.
+
+All authors often, and for good reasons, skipped  many stops on their long distance transport routes. This created difficult to read visualizations because of crossing and overlapping lines. Due to this reason I invented fake intermittent stops on their train journeys. These are always reasonable in that they are towns on the railway lines between the start and end of their journeys. But I of course do not know which exact route they took in the many alternatives possible. To make this clear I have slightly faded out these segments on the map.
+
+## Hans Jürgen Hartmann
+
+Extracting the dates and locations was extremely easy since the book is written as a diary. The only obstacle was the time between September 1942 and November 1943 when the author was not in combat but in either military hospitals or in training. During this time most dates were invented by me.
+
+## Günther Koschorrek
+
+For most parts dates and locations could easily be extracted. After the retreat from Rytschow in December 1942 over the Don it can no longer be reconstructed where the author was wounded because the area today is part of the Tsimlyansk Reservoir. Problematic was the chapter when the author was in Italy and Istria, for most parts the accompanying maps were used for this time. The first part of the retreat in early 1944 from Nikopol to Wosnessensk is lacking any places or dates.
+
+## Guy Sajer
+
+Extracting the information is much more challenging here because the author rarely uses dates and often makes it clear that he does not remember the accurate name of villages.
+
+### Chapter 2 & 3
+In chapter 2 and 3 the author is in the region of Charkow in early 1943. He mentions the following useful information:
+- One day before he reaches Charkow he is informed about the capitulation of the German 6th Army in Stalingrad.
+- He reached Charkow before it was re-captured by the Soviet forces on 15th of February 1943.
+- In the first paragraph of the second chapter *TODO* he mentions that it is approximately late February or early March.
+- The author says that he saw dug in German troops on the bank of the Don.
+- At the beginning of the third chapter *Vom Don nach Charkow. Erster Rückzug. Die Schlacht am Donez* the author mentions that the snow is melting and the temperature is +5 °C.
+
+Historically these are the facts:
+- The German 6th Army capitulated in Stalingrad on the 2nd of February 1943.
+- Soviet forces captured Charkow on the 15th of February 1943.
+- German forces re-captured Charkow on the 15th of March.
+- The *Ostrogozhsk–Rossosh Offensive* started on the 13th of January and removed German forces from most parts of the Don south of Woronesch.
+- In the *Voronezh–Kastornoye Operation* Woronesch was re-captured by Soviet forces on the 25th of January after it was [encircled](https://de.wikipedia.org/wiki/Woronesch-Charkiwer_Operation#/media/File:Ww2_map25_Dec42_Feb43.jpg).
+
+Due to the mismatch of historical facts and statements by the author I have decided to completely ignore these two chapters and place the author in Charkow the entire time (which is certainly impossible).
+
+## Hans von Luck
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
