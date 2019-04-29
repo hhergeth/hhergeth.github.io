@@ -2,3 +2,4 @@ projects/maps/frontline processor/data*
 projects/maps/maps processor/input maps/*
 projects/maps/maps processor/download-map.py
 projects/maps/maps processor/processed-tiles.json
+projects/maps/maps processor/ocr/*

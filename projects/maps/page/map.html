@@ -5,9 +5,6 @@
         <title>Maps</title>
         <script src="data-frontline.js" type="text/javascript"></script>
         <script src="data-persons.js" type="text/javascript"></script>
-        <script src="country-borders-geo.js" type="text/javascript"></script>
-        <script src="historic_tile_info.js" type="text/javascript"></script>
-        <script src="C:/Users/hherg/Desktop/historic tiles/map_annotations.js" type="text/javascript"></script>
         <script src="moment.min.js" type="text/javascript"></script>
         <script src="lightpick.js" type="text/javascript"></script>
         <script src="leaflet/leaflet.js" type="text/javascript"></script>
@@ -15,6 +12,7 @@
         <script src="Leaflet-MiniMap/Control.MiniMap.min.js" type="text/javascript"></script>
         <script src="leaflet-measure-path.js" type="text/javascript"></script>
         <script src="leaflet.contextmenu.min.js" type="text/javascript"></script>
+        <script src="historic.map.module.js" onload="loaded_historic_module=1" type="text/javascript" charset="UTF-8"></script>
         <link href="leaflet/leaflet.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="lightpick.css" rel="stylesheet">
@@ -61,24 +59,6 @@
                 border: none;
                 box-shadow: none;
             }
-            
-            .maptile-label-processed {
-                color:black;
-            }
-            .maptile-label-unavailable {
-                color:gray;
-            }
-            .maptile-label-available {
-                color:red;
-            }
-            .maptile-label-processed, .maptile-label-unavailable, .maptile-label-available {
-                position: absolute;
-                font-size:17px;
-                font-weight: 600;
-                background: transparent;
-                border: none;
-                box-shadow: none;
-            }
         </style>
     </head>
     <body>
@@ -107,10 +87,6 @@
             var frontline_group = null;
             var person_colors = ["green", "blue", "violet", "orange", "black"];
             var frontline_label_group = null;
-            var historic_map_group = null;
-            var historic_map_tile_label_group = null;
-            var historic_tile_labels_shown = false;
-            var ignore_map_remove = false;
             var circle_group = null;
             
             var storage  = window.localStorage;
@@ -336,6 +312,7 @@
                         callback: removeCircles
                     }]
                 }).addLayer(osm);
+                
                 map.doubleClickZoom.disable();
                 
                 circle_group = new L.featureGroup();
@@ -386,66 +363,10 @@
                 });
                 
                 map.fitBounds(global_bbox);
-
-                historic_map_group = new L.featureGroup(); 
-                var historicTiles = L.tileLayer('C:/Users/hherg/Desktop/historic tiles/{z}/{x}/{y}.png', {
-                    minZoom: 0, maxZoom: 14,
-                    maxNativeZoom: 12
-                }).addTo(historic_map_group);
-                var baseLayers = {
-                    "OSM": osm,
-                    "Übersichtskarten 1:300.000": historic_map_group
-                };
-                var myCustomStyle = {
-                    stroke: true,
-                    fill: false,
-                    color: "black",
-                    width: 1.5,
-                    opacity: 0.5
-                }
-                L.geoJson(country_data, {
-                    clickable: false,
-                    style: myCustomStyle
-                }).addTo(historic_map_group);
-                historic_map_tile_label_group = new L.featureGroup();
-                for (let map_info of historic_map_info) {
-                    var loc_center = [map_info[1] - 0.5, map_info[2] + 1];
-                    cName = "unavailable";
-                    var is_processed = historic_maps_processed.indexOf(map_info[0]) >= 0;
-                    var is_available = map_info[5];
-                    if(is_processed)
-                        cName = 'processed';
-                    if(!is_processed && is_available)
-                        cName = 'available';
-
-                    var myTextLabel = L.marker(loc_center, {
-                        icon: L.divIcon({
-                            className: 'maptile-label-'+cName,
-                            html: map_info[3]
-                        }),
-                        draggable: false,
-                        zIndexOffset: 1000
-                    }).addTo(historic_map_tile_label_group);
-                    if(map_info[4] != "")
-                        myTextLabel.bindTooltip(map_info[4]);
-                }
                 
-                var historic_map_tiles_name = "Übersichtskarten Names";
-                L.control.layers(baseLayers, {"Übersichtskarten Names": historic_map_tile_label_group}, {position: 'bottomleft'}).addTo(map);
-                
-                map.on({
-                    overlayadd: function(e1) {
-                        if (e1.name === historic_map_tiles_name){
-                            historic_tile_labels_shown = true;
-                        }
-                    },
-                    overlayremove: function(e) {
-                        if (e.name === historic_map_tiles_name && !ignore_map_remove) {
-                            historic_tile_labels_shown = false;
-                        }
-                    }
-                });
-                    
+                if(typeof loaded_historic_module !== 'undefined')
+                    init_historic_map_module(map, osm);
+   
                 /*L.control.scale({maxWidth: 200, position: 'bottomright'}).addTo(map);*/
                 
                 var legend = L.control({position: 'topright'});
@@ -501,8 +422,8 @@
                     autoToggleDisplay: true,
                 }).addTo(map);
                 
-                map.on('zoomend', () => toggleLabelsZoom(false));
-                toggleLabelsZoom(true);
+                map.on('zoomend', toggleLabelsZoom);
+                toggleLabelsZoom();
             }
             
             function showCoordinates(e) {
@@ -512,15 +433,26 @@
             function addCircle(e) {
                 var distance_km = prompt("Radius in km", 1.0);
                 if (distance_km != null) {
+                    var centerMarker = L.circle(e.latlng, distance_km * 1).addTo(circle_group);
                     var circle = L.circle(e.latlng, distance_km * 1000, {
                         contextmenu: true,
                         contextmenuItems: [{
+                            text: distance_km + ' km',
+                            index: 0
+                        },
+                        {
                             text: 'Change Radius',
                             callback: e => changeRadius(e, circle),
-                            index: 0
-                        }, {
-                            separator: true,
                             index: 1
+                        },
+                        {
+                            text: 'Remove Circle',
+                            callback: e => removeCircle(e, circle, centerMarker),
+                            index: 2
+                        },
+                        {
+                            separator: true,
+                            index: 3
                         }]
                     }).addTo(circle_group);
                 }
@@ -530,27 +462,24 @@
                 circle_group.clearLayers();
             }
             
+            function removeCircle(e, circle, centerMarker) {
+                circle_group.removeLayer(circle);
+                circle_group.removeLayer(centerMarker);
+                
+            }
+            
             function changeRadius(e, circle) {
-                var distance_km = prompt("Radius in km", 1.0);
+                var distance_km = prompt("Radius in km", circle.getRadius() / 1000);
                 if (distance_km != null) {
                     circle.setRadius(distance_km * 1000);
                 }
             }
             
-            function toggleLabelsZoom(inital) {
+            function toggleLabelsZoom() {
                 if (map.getZoom() < 4){
                     frontline_group.removeLayer(frontline_label_group);
                 }
                 else frontline_group.addLayer(frontline_label_group);
-                
-                if(!inital && historic_tile_labels_shown) {
-                    if (map.getZoom() < 5){
-                        ignore_map_remove = true;
-                        map.removeLayer(historic_map_tile_label_group);
-                        ignore_map_remove = false;
-                    }
-                    else map.addLayer(historic_map_tile_label_group);
-                }
             }
             
             function btn_link(btn) {
