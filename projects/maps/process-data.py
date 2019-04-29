@@ -43,6 +43,8 @@ def load_route(filepath, places):
         date = datetime.datetime.strptime(date_s, "%d.%m.%Y").date()
         if len(route) != 0 and date < route[-1][0]:
             print("Error, invalid date: ", date_s, place_name)
+        if not place_name in places:
+            print(place_name + " not in ", places)
         coords = places[place_name]
         route.append((date, coords, place_name, annotations))
 
@@ -101,6 +103,7 @@ data["Hans Jürgen Hartmann"] = load_data_set("hartmann")
 data["Günther Koschorrek"] = load_data_set("koschorrek")
 data["Guy Sajer"] = load_data_set("sajer")
 data["Hans von Luck"] = load_data_set("von Luck")
+data["Nikolaus Niessen"] = load_data_set("Niessen")
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
