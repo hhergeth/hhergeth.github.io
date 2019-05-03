@@ -1,0 +1,215 @@
+{
+  "Bad Kissingen": {
+    "coordinates": [50.2, 10.066667]
+  },
+  "Prag": {
+    "coordinates": [50.083333, 14.416667]
+  },
+  "Gleiwitz": {
+    "coordinates": [50.283333, 18.666667]
+  },
+  "Lysa Gory": {
+    "coordinates": [50.841111, 21.056667]
+  },
+  "Lodz": {
+    "coordinates": [51.776944, 19.454722]
+  },
+  "Warschau": {
+    "coordinates": [52.233333, 21.016667]
+  },
+  "Heimersheim": {
+    "coordinates": [50.542795, 7.176616]
+  },
+  "Dernau": {
+    "coordinates": [50.534167, 7.0425]
+  },
+  "Vogelsang": {
+    "coordinates": [50.584444, 6.448056]
+  },
+  "Dinant": {
+    "coordinates": [50.266667, 4.916667]
+  },
+  "Sivry": {
+    "coordinates": [50.15, 4.216667]
+  },
+  "Avesnes": {
+    "coordinates": [50.1244, 3.9267]
+  },
+  "Cambrai": {
+    "coordinates": [50.1767, 3.2356]
+  },
+  "St. Quentin Kanal": {
+    "coordinates": [50.1158, 3.2106]
+  },
+  "Arras": {
+    "coordinates": [50.292, 2.78]
+  },
+  "Lille": {
+    "coordinates": [50.6278, 3.0583]
+  },
+  "Lomme": {
+    "coordinates": [50.6358, 3.0142]
+  },
+  "Rouen": {
+    "coordinates": [49.44, 1.1]
+  },
+  "Fecamp": {
+    "coordinates": [49.76, 0.38]
+  },
+  "Caen": {
+    "coordinates": [49.18, -0.37]
+  },
+  "Rennes": {
+    "coordinates": [48.1147, -1.6794]
+  },
+  "Cherbourg": {
+    "coordinates": [49.63, -1.62]
+  },
+  "Nantes": {
+    "coordinates": [47.2181, -1.5528]
+  },
+  "La Rochelle": {
+    "coordinates": [46.1591, -1.1517]
+  },
+  "Rochefort": {
+    "coordinates": [45.9421, -0.9588]
+  },
+  "Gironde": {
+    "coordinates": [44.9956, -0.4447]
+  },
+  "Bordeaux": {
+    "coordinates": [44.84, -0.58]
+  },
+  "Arcachon": {
+    "coordinates": [44.65, -1.17]
+  },
+  "Le Vesinet": {
+    "coordinates": [48.8923, 2.1331]
+  },
+  "Flensburg": {
+    "coordinates": [54.781944, 9.436667]
+  },
+  "Paris": {
+    "coordinates": [48.8567, 2.3508]
+  },
+  "Heimerzheim": {
+    "coordinates": [50.716667, 6.916667]
+  },
+  "Bonn": {
+    "coordinates": [50.733333, 7.1]
+  },
+  "Insterburg": {
+    "coordinates": [54.634722, 21.811944]
+  },
+  "Olita": {
+    "coordinates": [54.401389, 24.049167]
+  },
+  "Wilna": {
+    "coordinates": [54.683333, 25.283333]
+  },
+  "Minsk": {
+    "coordinates": [53.9, 27.566667]
+  },
+  "Smolensk": {
+    "coordinates": [54.782778, 32.045278]
+  },
+  "Jarcewo": {
+    "coordinates": [55.066667, 32.7]
+  },
+  "Wolokolamsk": {
+    "coordinates": [56.033333, 35.95]
+  },
+  "Klin": {
+    "coordinates": [56.333333, 36.733333]
+  },
+  "Jachroma": {
+    "coordinates": [56.283333, 37.483333]
+  },
+  "Grodno": {
+    "coordinates": [53.666667, 23.833333]
+  },
+  "Posen": {
+    "coordinates": [52.4, 16.916667]
+  },
+  "Stahnsdorf": {
+    "coordinates": [52.392222, 13.216667]
+  },
+  "Berlin": {
+    "coordinates": [52.516667, 13.388889]
+  },
+  "Rom": {
+    "coordinates": [41.9, 12.5]
+  },
+  "Brindisi": {
+    "coordinates": [40.633333, 17.933333]
+  },
+  "Kreta": {
+    "coordinates": [35.21, 24.91]
+  },
+  "Derna": {
+    "coordinates": [32.766667, 22.633333]
+  },
+  "Bir-el Harmat": {
+    "coordinates": [31.616667, 23.466667]
+  },
+  "Neapel": {
+    "coordinates": [40.845, 14.258333]
+  },
+  "Eßlingen": {
+    "coordinates": [48.733333, 9.316667]
+  },
+  "Sizilien": {
+    "coordinates": [37.566667, 14.266667]
+  },
+  "Tobruk": {
+    "coordinates": [32.083333, 23.966667]
+  },
+  "Siwa": {
+    "coordinates": [29.190556, 25.549167]
+  },
+  "Giarabub": {
+    "coordinates": [29.7425, 24.516944]
+  },
+  "Agedabia": {
+    "coordinates": [30.75, 20.216667]
+  },
+  "Nofilia": {
+    "coordinates": [30.783056, 17.833056]
+  },
+  "Süd Homs": {
+    "coordinates": [32.443576, 13.367595]
+  },
+  "Tarhuna": {
+    "coordinates": [32.433889, 13.634444]
+  },
+  "Tataouine": {
+    "coordinates": [32.933333, 10.45]
+  },
+  "Kasserinepaß": {
+    "coordinates": [35.2596, 8.7424]
+  },
+  "Tunis": {
+    "coordinates": [36.806389, 10.181667]
+  },
+  "Berchtesgaden": {
+    "coordinates": [47.631389, 13.004167]
+  },
+  "München": {
+    "coordinates": [48.133333, 11.566667]
+  },
+  "Hamburg": {
+    "coordinates": [53.565278, 10.001389]
+  },
+  "Sachsenhausen": {
+    "coordinates": [52.765833, 13.264167]
+  },
+  "La Roche Guyon": {
+    "coordinates": [49.0822, 1.6303]
+  },
+  "Nogent-le-Rotrou": {
+    "coordinates": [48.321667, 0.821667]
+  },
+  "Bellengreville": {
+    "coordinates": [49.1256, -0.21]
+  }
+}

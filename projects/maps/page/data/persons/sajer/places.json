@@ -1,0 +1,35 @@
+{
+  "Chemnitz": {
+    "coordinates": [50.833333, 12.916667]
+  },
+  "Dresden": {
+    "coordinates": [51.033333, 13.733333]
+  },
+  "Warschau": {
+    "coordinates": [52.233333, 21.016667]
+  },
+  "Brest-Litowsk": {
+    "coordinates": [52.133333, 23.666667]
+  },
+  "Kremenstövsk": {
+    "coordinates": [52.402778, 23.808333]
+  },
+  "Bialystock": {
+    "coordinates": [53.135278, 23.145556]
+  },
+  "Minsk": {
+    "coordinates": [53.9, 27.566667]
+  },
+  "Kalachy": {
+    "coordinates": [54.307998, 27.502599]
+  },
+  "Kiew": {
+    "coordinates": [50.45, 30.523333]
+  },
+  "Charkow": {
+    "coordinates": [50.004444, 36.231389]
+  },
+  "Bjelgorod": {
+    "coordinates": [50.6, 36.6]
+  }
+}

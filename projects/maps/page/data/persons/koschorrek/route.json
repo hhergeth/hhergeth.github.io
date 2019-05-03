@@ -1,0 +1,668 @@
+[
+	{
+		"date": "17.10.1942",
+		"place": "Stablack",
+		"annotations": "t"
+	},
+	{
+		"date": "18.10.1942",
+		"place": "Rowno",
+		"annotations": "t?"
+	},
+	{
+		"date": "23.10.1942",
+		"place": "Krementschug",
+		"annotations": "t"
+	},
+	{
+		"date": "25.10.1942",
+		"place": "Rostow",
+		"annotations": "t"
+	},
+	{
+		"date": "26.10.1942",
+		"place": "Oblivskaya",
+		"annotations": "t"
+	},
+	{
+		"date": "29.10.1942",
+		"place": "Kalatsch am Don",
+		"annotations": "t"
+	},
+	{
+		"date": "31.10.1942",
+		"place": "Businowka",
+		"annotations": "t"
+	},
+	{
+		"date": "13.11.1942",
+		"place": "Businowka"
+	},
+	{
+		"date": "13.11.1942",
+		"place": "Tennisschläger"
+	},
+	{
+		"date": "14.11.1942",
+		"place": "Businowka"
+	},
+	{
+		"date": "21.11.1942",
+		"place": "Businowka"
+	},
+	{
+		"date": "21.11.1942",
+		"place": "Sredne",
+		"annotations": "f"
+	},
+	{
+		"date": "21.11.1942",
+		"place": "Ssowjetskij",
+		"annotations": "f"
+	},
+	{
+		"date": "22.11.1942",
+		"place": "Kalatsch am Don",
+		"annotations": "f"
+	},
+	{
+		"date": "23.11.1942",
+		"place": "Rytschow",
+		"annotations": "f"
+	},
+	{
+		"date": "13.12.1942",
+		"place": "Rytschow"
+	},
+	{
+		"date": "14.12.1942",
+		"place": "Nemkowskij",
+		"annotations": "f"
+	},
+	{
+		"date": "16.12.1942",
+		"place": "Nishne Tschirskaja",
+		"annotations": "v"
+	},
+	{
+		"date": "17.12.1942",
+		"place": "Morosowskaja",
+		"annotations": "v"
+	},
+	{
+		"date": "20.12.1942",
+		"place": "Luhansk",
+		"annotations": "v?"
+	},
+	{
+		"date": "22.12.1942",
+		"place": "Krementschug",
+		"annotations": "v?"
+	},
+	{
+		"date": "22.12.1942",
+		"place": "Tarnopol",
+		"annotations": "v?"
+	},
+	{
+		"date": "28.12.1942",
+		"place": "Krakau",
+		"annotations": "v"
+	},
+	{
+		"date": "29.12.1942",
+		"place": "Bad Salzbrunn",
+		"annotations": "v"
+	},
+	{
+		"date": "21.01.1943",
+		"place": "Bad Salzbrunn",
+		"annotations": "v"
+	},
+	{
+		"date": "23.01.1943",
+		"place": "Insterburg",
+		"annotations": "t"
+	},
+	{
+		"date": "02.05.1943",
+		"place": "Insterburg",
+		"annotations": "t"
+	},
+	{
+		"date": "03.05.1943",
+		"place": "Radom",
+		"annotations": "u"
+	},
+	{
+		"date": "23.05.1943",
+		"place": "Radom",
+		"annotations": "u"
+	},
+	{
+		"date": "01.06.1943",
+		"place": "Insterburg",
+		"annotations": "t"
+	},
+	{
+		"date": "11.07.1943",
+		"place": "Insterburg",
+		"annotations": "t"
+	},
+	{
+		"date": "13.07.1943",
+		"place": "Flers",
+		"annotations": "t"
+	},
+	{
+		"date": "14.08.1943",
+		"place": "Flers"
+	},
+	{
+		"date": "15.08.1943",
+		"place": "Landeck",
+		"annotations": "t"
+	},
+	{
+		"date": "15.08.1943",
+		"place": "Meran",
+		"annotations": "t"
+	},
+	{
+		"date": "16.08.1943",
+		"place": "Bozen",
+		"annotations": "t"
+	},
+	{
+		"date": "16.08.1943",
+		"place": "Trient",
+		"annotations": "t"
+	},
+	{
+		"date": "16.08.1943",
+		"place": "Verona",
+		"annotations": "t"
+	},
+	{
+		"date": "16.08.1943",
+		"place": "Cavazzona",
+		"annotations": "t"
+	},
+	{
+		"date": "16.08.1943",
+		"place": "Modena"
+	},
+	{
+		"date": "17.08.1943",
+		"place": "Modena"
+	},
+	{
+		"date": "14.09.1943",
+		"place": "Castagnolo",
+		"annotations": "t"
+	},
+	{
+		"date": "20.09.1943",
+		"place": "Castagnolo"
+	},
+	{
+		"date": "21.09.1943",
+		"place": "Ferrara",
+		"annotations": "t"
+	},
+	{
+		"date": "22.09.1943",
+		"place": "Padua",
+		"annotations": "t"
+	},
+	{
+		"date": "22.09.1943",
+		"place": "Udine",
+		"annotations": "t"
+	},
+	{
+		"date": "22.09.1943",
+		"place": "Triest",
+		"annotations": "t"
+	},
+	{
+		"date": "25.09.1943",
+		"place": "Cosina"
+	},
+	{
+		"date": "27.09.1943",
+		"place": "Buje",
+		"annotations": "kz"
+	},
+	{
+		"date": "29.09.1943",
+		"place": "Pinguente",
+		"annotations": "kz"
+	},
+	{
+		"date": "02.10.1943",
+		"place": "Rozzo",
+		"annotations": "kz"
+	},
+	{
+		"date": "05.10.1943",
+		"place": "Abbazia",
+		"annotations": "kz"
+	},
+	{
+		"date": "08.10.1943",
+		"place": "Pisino",
+		"annotations": "kz"
+	},
+	{
+		"date": "10.10.1943",
+		"place": "Parenza",
+		"annotations": "kz"
+	},
+	{
+		"date": "12.10.1943",
+		"place": "Tomadio",
+		"annotations": "t"
+	},
+	{
+		"date": "13.10.1943",
+		"place": "Tomadio",
+		"annotations": "t"
+	},
+	{
+		"date": "17.10.1943",
+		"place": "Laibach",
+		"annotations": "t"
+	},
+	{
+		"date": "19.10.1943",
+		"place": "Wien",
+		"annotations": "t"
+	},
+	{
+		"date": "22.10.1943",
+		"place": "Tarnopol",
+		"annotations": "t?"
+	},
+	{
+		"date": "24.10.1943",
+		"place": "Kirowograd",
+		"annotations": "t?"
+	},
+	{
+		"date": "28.10.1943",
+		"place": "Scharowka",
+		"annotations": "t"
+	},
+	{
+		"date": "28.10.1943",
+		"place": "Nowaja Praga"
+	},
+	{
+		"date": "29.10.1943",
+		"place": "Sspassowo"
+	},
+	{
+		"date": "29.10.1943",
+		"place": "Wodjana"
+	},
+	{
+		"date": "30.10.1943",
+		"place": "Krassno-Konstantinowka"
+	},
+	{
+		"date": "30.10.1943",
+		"place": "Ternowatka"
+	},
+	{
+		"date": "31.10.1943",
+		"place": "Nedai Woda"
+	},
+	{
+		"date": "01.11.1943",
+		"place": "Sarja"
+	},
+	{
+		"date": "03.11.1943",
+		"place": "Sarja"
+	},
+	{
+		"date": "05.11.1943",
+		"place": "Wechnyj Rogatschik",
+		"annotations": "t"
+	},
+	{
+		"date": "06.11.1943",
+		"place": "Wechnyj Rogatschik"
+	},
+	{
+		"date": "07.11.1943",
+		"place": "Dnjeprowka",
+		"annotations": "t"
+	},
+	{
+		"date": "03.01.1944",
+		"place": "Dnjeprowka"
+	},
+	{
+		"date": "04.01.1944",
+		"place": "Wodjanoje",
+		"annotations": "t"
+	},
+	{
+		"date": "13.01.1944",
+		"place": "Wodjanoje"
+	},
+	{
+		"date": "14.01.1944",
+		"place": "Prymiske",
+		"annotations": "t"
+	},
+	{
+		"date": "15.01.1944",
+		"place": "Rachel-WD",
+		"annotations": "t"
+	},
+	{
+		"date": "16.01.1944",
+		"place": "Stachanow"
+	},
+	{
+		"date": "16.01.1944",
+		"place": "Wodjanoje"
+	},
+	{
+		"date": "22.01.1944",
+		"place": "Wodjanoje"
+	},
+	{
+		"date": "31.01.1944",
+		"place": "Apostolowo",
+		"annotations": "t"
+	},
+	{
+		"date": "02.02.1944",
+		"place": "Schirokoje",
+		"annotations": "t"
+	},
+	{
+		"date": "14.03.1944",
+		"place": "Slatopol",
+		"annotations": "f"
+	},
+	{
+		"date": "15.03.1944",
+		"place": "Olgopol",
+		"annotations": "f"
+	},
+	{
+		"date": "16.03.1944",
+		"place": "Chutor Wessely",
+		"annotations": "f"
+	},
+	{
+		"date": "17.03.1944",
+		"place": "Bolschoje Ssolenoje",
+		"annotations": "f"
+	},
+	{
+		"date": "19.03.1944",
+		"place": "Wassiljewka",
+		"annotations": "f"
+	},
+	{
+		"date": "19.03.1944",
+		"place": "Nowyj Grigorjewskij",
+		"annotations": "f"
+	},
+	{
+		"date": "20.03.1944",
+		"place": "Nowyj-Grigorjewsk",
+		"annotations": "f"
+	},
+	{
+		"date": "21.03.1944",
+		"place": "Wosnessensk",
+		"annotations": "f"
+	},
+	{
+		"date": "26.03.1944",
+		"place": "Wosnessensk",
+		"annotations": "f"
+	},
+	{
+		"date": "27.03.1944",
+		"place": "Kischinew",
+		"annotations": "t"
+	},
+	{
+		"date": "28.03.1944",
+		"place": "Kischinew"
+	},
+	{
+		"date": "30.03.1944",
+		"place": "Nisporeni"
+	},
+	{
+		"date": "01.04.1944",
+		"place": "Horlesti"
+	},
+	{
+		"date": "02.04.1944",
+		"place": "Yulturul"
+	},
+	{
+		"date": "04.04.1944",
+		"place": "Jassy"
+	},
+	{
+		"date": "27.04.1944",
+		"place": "Carligul"
+	},
+	{
+		"date": "28.04.1944",
+		"place": "Jassy"
+	},
+	{
+		"date": "29.04.1944",
+		"place": "Wald-Horlesti"
+	},
+	{
+		"date": "30.04.1944",
+		"place": "Jassy"
+	},
+	{
+		"date": "11.05.1944",
+		"place": "Jassy"
+	},
+	{
+		"date": "14.05.1944",
+		"place": "Insterburg",
+		"annotations": "u"
+	},
+	{
+		"date": "03.06.1944",
+		"place": "Insterburg",
+		"annotations": "u"
+	},
+	{
+		"date": "05.06.1944",
+		"place": "Wien",
+		"annotations": "u"
+	},
+	{
+		"date": "06.06.1944",
+		"place": "Budapest",
+		"annotations": "u"
+	},
+	{
+		"date": "08.06.1944",
+		"place": "Banu",
+		"annotations": "u"
+	},
+	{
+		"date": "22.06.1944",
+		"place": "Banu"
+	},
+	{
+		"date": "27.06.1944",
+		"place": "Popesti",
+		"annotations": "t"
+	},
+	{
+		"date": "17.07.1944",
+		"place": "Popesti"
+	},
+	{
+		"date": "18.07.1944",
+		"place": "Roman",
+		"annotations": "t"
+	},
+	{
+		"date": "21.07.1944",
+		"place": "Jaroslau",
+		"annotations": "t"
+	},
+	{
+		"date": "22.07.1944",
+		"place": "Wola Pelinska"
+	},
+	{
+		"date": "25.07.1944",
+		"place": "Wola Pelinska"
+	},
+	{
+		"date": "27.07.1944",
+		"place": "Reichshof"
+	},
+	{
+		"date": "04.08.1944",
+		"place": "Mielec"
+	},
+	{
+		"date": "05.08.1944",
+		"place": "Szczucin"
+	},
+	{
+		"date": "06.08.1944",
+		"place": "Rataje Karskie"
+	},
+	{
+		"date": "08.08.1944",
+		"place": "Grottkau",
+		"annotations": "v"
+	},
+	{
+		"date": "30.08.1944",
+		"place": "Grottkau",
+		"annotations": "v"
+	},
+	{
+		"date": "04.09.1944",
+		"place": "Insterburg",
+		"annotations": "t"
+	},
+	{
+		"date": "21.10.1944",
+		"place": "Insterburg"
+	},
+	{
+		"date": "21.10.1944",
+		"place": "Nemmersdorf"
+	},
+	{
+		"date": "27.10.1944",
+		"place": "Nemmersdorf"
+	},
+	{
+		"date": "27.10.1944",
+		"place": "Litzmannstadt"
+	},
+	{
+		"date": "07.01.1945",
+		"place": "Litzmannstadt"
+	},
+	{
+		"date": "08.01.1945",
+		"place": "Berlin",
+		"annotations": "t"
+	},
+	{
+		"date": "09.01.1945",
+		"place": "Hamburg",
+		"annotations": "t"
+	},
+	{
+		"date": "10.01.1945",
+		"place": "Aarhus",
+		"annotations": "t"
+	},
+	{
+		"date": "08.03.1945",
+		"place": "Aarhus"
+	},
+	{
+		"date": "15.03.1945",
+		"place": "Hamburg",
+		"annotations": "t"
+	},
+	{
+		"date": "17.03.1945",
+		"place": "Hamburg",
+		"annotations": "t"
+	},
+	{
+		"date": "19.03.1945",
+		"place": "Stettin",
+		"annotations": "t"
+	},
+	{
+		"date": "26.03.1945",
+		"place": "Stettin",
+		"annotations": "vf"
+	},
+	{
+		"date": "26.03.1945",
+		"place": "Schwerin",
+		"annotations": "vf"
+	},
+	{
+		"date": "29.03.1945",
+		"place": "Schwerin",
+		"annotations": "vf"
+	},
+	{
+		"date": "01.04.1945",
+		"place": "Magdeburg",
+		"annotations": "vf"
+	},
+	{
+		"date": "05.04.1945",
+		"place": "Halle",
+		"annotations": "vf"
+	},
+	{
+		"date": "06.04.1945",
+		"place": "Jena",
+		"annotations": "vf"
+	},
+	{
+		"date": "12.04.1945",
+		"place": "Jena",
+		"annotations": "vf"
+	},
+	{
+		"date": "14.04.1945",
+		"place": "Eger",
+		"annotations": "vf"
+	},
+	{
+		"date": "16.04.1945",
+		"place": "Marienbad",
+		"annotations": "vf"
+	},
+	{
+		"date": "11.06.1945",
+		"place": "Marienbad"
+	}
+]

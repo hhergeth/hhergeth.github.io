@@ -1,0 +1,72 @@
+[
+	{
+		"date": "18.07.1942",
+		"place": "Chemnitz",
+		"annotations": "t"
+	},
+	{
+		"date": "15.09.1942",
+		"place": "Chemnitz",
+		"annotations": "t"
+	},
+	{
+		"date": "16.09.1942",
+		"place": "Dresden",
+		"annotations": "t"
+	},
+	{
+		"date": "17.10.1942",
+		"place": "Warschau",
+		"annotations": "t"
+	},
+	{
+		"date": "19.10.1942",
+		"place": "Brest-Litowsk",
+		"annotations": "t"
+	},
+	{
+		"date": "20.10.1942",
+		"place": "Kremenstövsk",
+		"annotations": "t"
+	},
+	{
+		"date": "30.10.1942",
+		"place": "Kremenstövsk",
+		"annotations": "t"
+	},
+	{
+		"date": "30.10.1942",
+		"place": "Bialystock",
+		"annotations": "t"
+	},
+	{
+		"date": "05.11.1942",
+		"place": "Minsk",
+		"annotations": "t"
+	},
+	{
+		"date": "10.11.1942",
+		"place": "Kalachy",
+		"annotations": "t"
+	},
+	{
+		"date": "24.12.1942",
+		"place": "Kalachy",
+		"annotations": "t"
+	},
+	{
+		"date": "25.12.1942",
+		"place": "Minsk",
+		"annotations": "t"
+	},
+	{
+		"date": "03.01.1943",
+		"place": "Kiew",
+		"annotations": "t"
+	},
+	{
+		"date": "05.02.1943",
+		"place": "Charkow",
+		"annotations": "t"
+	}
+]
