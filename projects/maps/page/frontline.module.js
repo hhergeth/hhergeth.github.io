@@ -28,3 +28,19 @@ function closest_front(total, front, date, front_name, mode) {
     var difference_ms_total = date - date_total_front;
     return difference_ms_new < difference_ms_total ? obj : total;
 }
+
+function load_frontline_data() {
+    return load_json('data/frontline/frontline.json').then(frontlines => {
+        var paths = [];
+        for(let frontline_file of frontlines) {
+            paths.push('data/frontline/' + frontline_file.filename);
+        }
+        return load_jsons(paths).then(data => {
+            frontline_data = [];
+            for (var idx = 0; idx < frontlines.length; idx++) {
+                frontline_data.push(data[idx]);
+            }
+            return frontline_data;
+        });
+    });
+}

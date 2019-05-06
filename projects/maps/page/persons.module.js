@@ -1,4 +1,4 @@
-function validate_person_data() {
+function validate_person_data(person_data) {
     var found_error = false;
 
     for (var person_name in person_data) {
@@ -24,4 +24,24 @@ function validate_person_data() {
 
     if(found_error)
         alert("Found errors in the person data, please check the console!");
+}
+
+function load_person_data() {
+    return load_json('data/persons/persons.json').then(persons => {
+        var paths = [];
+        for(let person of persons){
+            paths.push('data/persons/' + person.folder + '/places.json');
+            paths.push('data/persons/' + person.folder + '/route.json');
+        }
+        return load_jsons(paths).then(data => {
+            person_data = {};
+
+            for (var idx = 0; idx < persons.length; idx++) {
+                person_data[persons[idx].name] = {'places': data[2 * idx + 0], 'route': data[2 * idx + 1]};
+            }
+
+            validate_person_data(person_data);
+            return person_data;
+        })
+    });
 }

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <title>Maps</title>
+        <title>Map</title>
         <script src="libs/moment.min.js" type="text/javascript"></script>
         <script src="libs/lightpick.js" type="text/javascript"></script>
         <script src="libs/leaflet/leaflet.js" type="text/javascript"></script>
@@ -11,6 +11,11 @@
         <script src="libs/Leaflet-MiniMap/Control.MiniMap.min.js" type="text/javascript"></script>
         <script src="libs/leaflet-measure-path.js" type="text/javascript"></script>
         <script src="libs/leaflet.contextmenu.min.js" type="text/javascript"></script>
+        <script src="libs/spin.js" type="text/javascript"></script>
+        <script src="libs/leaflet.spin.js" type="text/javascript"></script>
+        <script src="libs/leaflet-ruler.js" type="text/javascript"></script>
+        <script src="libs/proj4.js" type="text/javascript"></script>
+        <script src="libs/Leaflet.MetricGrid.js" type="text/javascript"></script>
         <script src="frontline.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="persons.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="utils.js" type="text/javascript" charset="UTF-8"></script>
@@ -20,6 +25,8 @@
         <link href="libs/Leaflet-MiniMap/Control.MiniMap.min.css" rel="stylesheet">
         <link href="libs/leaflet-measure-path.css" rel="stylesheet">
         <link href="libs/leaflet.contextmenu.min.css" rel="stylesheet">
+        <link href="libs/spin.css" rel="stylesheet">
+        <link href="libs/leaflet-ruler.css" rel="stylesheet">
         <style>
             body {
                 padding: 0;
@@ -102,16 +109,17 @@
             var year_colors = ['#ffe119', '#3cb44b', '#e6194B', '#4363d8', '#f58231', '#469990', '#f032e6', '#fabebe'];
             var picker = null;
             var map = null;
-            var osm_layer;
             var person_groups = [];
             var frontline_group = null;
             var person_colors = ["green", "blue", "violet", "orange", "black"];
             var frontline_label_group = null;
             var circle_group = null;
             var person_control = null;
+            var dhg_group;
+            var base_layers = {};
+            var optional_layers = {};
 
-            var historic_map_url = null;
-            var historic_map_key = "";
+            var historic_map_key = "historic-map-url";
 
             var historic_map_group = null;
             var historic_map_tile_label_group = null;
@@ -121,8 +129,6 @@
             var historic_maps_info = null;
             var country_borders_geo = null;
             var historic_maps_processed = null;
-            
-            var storage  = window.localStorage;
 
             var person_data = {};
             var frontline_data = [];
@@ -163,7 +169,6 @@
                     opacity: opacity_line,
                     dashArray: dashes,
                     showMeasurements: true,
-                    //measurementOptions: { showOnHover: true }
                 }).addTo(group);
             
                 line.formatDistance = function(d) {
@@ -198,10 +203,6 @@
                         }
                     ]
                 }).addTo(group);
-            }
-            
-            function legend_transit(a, text) {
-                return '<svg height="12" width="43"> <g fill="none" stroke="black" stroke-width="4"> <path stroke-dasharray="' + get_dash(a) + '" d="M0 7 L35 7"></path></g> </svg>' + text;
             }
             
             function plot(date_start, date_end) {    
@@ -281,24 +282,34 @@
                     if(tagged_charts_end != null && (sq.length == 0 || sq[0].date != tagged_charts_end.date))
                         sq.push(tagged_charts_end);
 
+                    //the total area of all charts for this front
+                    var total_area = 0;
+                    var sum_centroids_x = 0;
+                    var sum_centroids_y = 0;
+                    var num_centroid = 0;
                     for (let tagged_charts of sq) {
-                        var chart_date = tagged_charts.date;
                         for(let chart of tagged_charts.charts) {
-                            var polygon = L.polygon([chart.outer].concat(chart.inner), {color: 'red', opacity: 0.25}).addTo(frontline_group);
-
-                            //add name and date of this front
-                            if (polygonArea(chart.outer) < 5)
+                            if(chart.outer.length == 0)
                                 continue;
-                            var center = getCentroid2(chart.outer);//polygon.getBounds().getCenter()
-                            var myTextLabel = L.marker(center, {
-                                icon: L.divIcon({
-                                    className: 'frontline-label',
-                                    html: moment(chart_date).format('DD/MM/YY') + "\n" + front_name
-                                }),
-                                draggable: false,
-                                zIndexOffset: 1000
-                            }).addTo(frontline_label_group);
+
+                            var polygon = L.polygon([chart.outer].concat(chart.inner), {color: 'red', opacity: 0.25}).addTo(frontline_group);
+                            total_area += polygonArea(chart.outer);
+                            var center = getCentroid2(chart.outer);
+                            sum_centroids_x += center[0];
+                            sum_centroids_y += center[1];
+                            num_centroid++;
                         }
+                    }
+
+                    if(total_area > 5) {
+                        var center = [sum_centroids_x / num_centroid, sum_centroids_y / num_centroid];
+                        var myTextLabel = L.marker(center, {
+                            icon: L.divIcon({
+                                className: 'frontline-label',
+                                html: moment(sq[0].date).format('DD.MM.YYYY') + "\n" + front_name
+                            }),
+                            draggable: false
+                        }).addTo(frontline_label_group);
                     }
                 }
             }
@@ -310,20 +321,15 @@
                     person_group.addTo(map);
                     person_groups[person_name] = person_group;
                 }
-                person_groups["HKL"] = frontline_group;
                 
                 plot(start_date, end_date);
 
                 person_groups_html = [];
                 var idx = 0;
                 for(var entry_name in person_groups) {
-                    var color_name = "red";
-                    if(entry_name != "HKL") {
-                        color_name = getPersonColor(idx);
-                        idx = idx + 1;
-                    }
-                    var html_name = '<span style="color:' + color_name + '">' + entry_name + '</span>';
-                    person_groups_html[html_name] = person_groups[entry_name]
+                    var html_name = '<span style="color:' + getPersonColor(idx) + '">' + entry_name + '</span>';
+                    person_groups_html[html_name] = person_groups[entry_name];
+                    idx = idx + 1;
                 }
 
                 if(person_control != null)
@@ -331,26 +337,19 @@
                 person_control = L.control.layers(null, person_groups_html,{collapsed:false, position: 'bottomleft'}).addTo(map);
             }
 
-            function initializeHistoricMap(url) {
-                if(historic_map_url != null) {
-                    console.log("Cannot reset the historic mal url from: " + historic_map_url + " to: " + url);
+            function initializeHistoricMap(historic_map_url) {
+                if(historic_map_group != null) {
+                    console.log("Cannot reset the historic mal url to: " + historic_map_url);
                     return
                 }
 
-                historic_map_url = url;
-                storage.setItem(historic_map_key, historic_map_url);
-
                 historic_map_group = new L.featureGroup();
+                base_layers["Übersichtskarten 1:300.000"] = historic_map_group;
     
                 var historicTiles = L.tileLayer(historic_map_url + '/{z}/{x}/{y}.png', {
                     minZoom: 0, maxZoom: 14,
                     maxNativeZoom: 12
                 }).addTo(historic_map_group);
-                
-                var baseLayers = {
-                    "OSM": osm_layer,
-                    "Übersichtskarten 1:300.000": historic_map_group
-                };
 
                 var myCustomStyle = {
                     stroke: true,
@@ -367,6 +366,7 @@
                 });
 
                 historic_map_tile_label_group = new L.featureGroup();
+
                 load_json('data/historic_maps_info.json').then(historic_maps_info => {
                     load_json(historic_map_url + '/historic_map_annotations.json').then(historic_maps_processed => {
                         for (let map_info of historic_maps_info) {
@@ -394,7 +394,7 @@
                 });
 
                 var historic_map_tiles_name = "Übersichtskarten Names";
-                L.control.layers(baseLayers, {"Übersichtskarten Names": historic_map_tile_label_group}, {position: 'bottomleft'}).addTo(map);
+                optional_layers[historic_map_tiles_name] = historic_map_tile_label_group;
 
                 map.on({
                     overlayadd: function(e1) {
@@ -423,11 +423,38 @@
                     else map.addLayer(historic_map_tile_label_group);
                 }
             }
+
+            //the DHG = Deutsche Heeres Gitter is very similar to UTM but only differes in scale factor and ellipsoid
+            //I am still using the WGS84 datum here instead of Potsdam because I loaded the maps incorrectly            
+            //https://global-geography.org/attach/Geography/Cross-country_information/Buchroithner.pdf
+            //http://www.gpsforum.geospector.de/phpbb/viewtopic.php?f=6&t=1513
+            //http://osgeo-org.1560.x6.nabble.com/System-42-83-S42-83-td3850558.html
+            function createDHG(layer) {
+                L.DHG = L.MetricGrid.extend({
+                    options: {
+                        bounds: [[100000, 0] , [900000, 9400000]],
+                        maxInterval: 1000000
+                    },
+
+                    initialize: function(zone, options) {
+                        var lon = ((6 * Math.abs(zone)) - 183);
+                        options.proj4ProjDef= "+proj=tmerc +lat_0=0 +lon_0=" + lon +  " +k_0=1 +x_0=500000 +y_0=0 +ellps=bessel +datum=WGS84 +units=m +no_defs";
+                        options.latLonClipBounds = [[40, -180 + ((zone - 1) * 6)], [80, -180 + ((zone - 1) * 6) + 6]];
+                        L.setOptions(this, options);
+                    }
+                });
+
+                for(var zone_idx = 30; zone_idx < 40; zone_idx++) {
+                    var zone_grid = new L.DHG(zone_idx, {color:'red'});
+                    layer.addLayer(zone_grid);
+                }
+            }
                 
             window.onload=function(){
-                osm_layer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+                var osm_layer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
                     maxZoom: 18,
                 });
+                base_layers["OSM"] = osm_layer;
             
                 map = L.map('map', {
                     zoomControl: false,
@@ -447,6 +474,8 @@
                 
                 map.setView([50.666667, 17.933333], 4);
                 map.doubleClickZoom.disable();
+
+                map.spin(true);
                 
                 circle_group = new L.featureGroup();
                 circle_group.addTo(map);
@@ -455,6 +484,11 @@
                 frontline_group.addTo(map);
                 frontline_label_group = new L.featureGroup();
                 frontline_label_group.addTo(frontline_group);
+                optional_layers["Hauptkampflinie"] = frontline_group;
+
+                dhg_group = new L.featureGroup();
+                createDHG(dhg_group);
+                optional_layers["Deutsches Heeres Gitter"] = dhg_group;
                 
                 var legend = L.control({position: 'topright'});
                 legend.onAdd = function(map) {
@@ -473,7 +507,9 @@
                     var transits = [["k", "Fight"], ["v", "Hurt"], ["f", "Run"], ["u", "Leave"], ["t", "Trst"]];
                     labels.push('<strong>Transits</strong>');
                     for (var i = 0; i < transits.length; i++) {
-                        labels.push(legend_transit(transits[i][0], transits[i][1]));
+                        var q = '<svg height="12" width="43"> <g fill="none" stroke="black" stroke-width="4"> <path stroke-dasharray="'
+                                + get_dash(transits[i][0]) + '" d="M0 7 L35 7"></path></g> </svg>' + transits[i][1];
+                        labels.push(q);
                     }
                     
                     div.innerHTML = labels.join('<br>');
@@ -481,8 +517,8 @@
                 };
                 legend.addTo(map);
 
-                var start_date = new Date(storage.getItem("start-date") || "1939-01-01");
-                var end_date = new Date(storage.getItem("end-date") || "1950-01-01");
+                var start_date = new Date(window.localStorage.getItem("start-date") || "1939-01-01");
+                var end_date = new Date(window.localStorage.getItem("end-date") || "1950-01-01");
                 
                 var timeselector = L.control({position: 'topleft'});
                 timeselector.onAdd = function(map) {        
@@ -499,8 +535,8 @@
                     endDate: end_date,
                     onSelect: function(start, end){
                         plot(picker.getStartDate().toDate(), picker.getEndDate().toDate());
-                        storage.setItem("start-date", picker.getStartDate().toDate().toISOString());
-                        storage.setItem("end-date", picker.getEndDate().toDate().toISOString());
+                        window.localStorage.setItem("start-date", picker.getStartDate().toDate().toISOString());
+                        window.localStorage.setItem("end-date", picker.getEndDate().toDate().toISOString());
                     }
                 });
                 
@@ -515,36 +551,10 @@
                 map.on('zoomend', toggleLabelsZoom);
                 toggleLabelsZoom();
 
-                var p1 = load_json('data/persons/persons.json').then(persons => {
-                    var paths = [];
-                    for(let person of persons){
-                        paths.push('data/persons/' + person.folder + '/places.json');
-                        paths.push('data/persons/' + person.folder + '/route.json');
-                    }
-                    return load_jsons(paths).then(data => {
-                        for (var idx = 0; idx < persons.length; idx++) {
-                            person_data[persons[idx].name] = {'places': data[2 * idx + 0], 'route': data[2 * idx + 1]};
-                        }
+                person_data = load_person_data();
+                frontline_data = load_frontline_data();
 
-                        validate_person_data();
-                        return '';
-                    })
-                });
-
-                var p2 = load_json('data/frontline/frontline.json').then(frontlines => {
-                    var paths = [];
-                    for(let frontline_file of frontlines) {
-                        paths.push('data/frontline/' + frontline_file.filename);
-                    }
-                    return load_jsons(paths).then(data => {
-                        for (var idx = 0; idx < frontlines.length; idx++) {
-                            frontline_data.push(data[idx]);
-                        }
-                        return '';
-                    });
-                });
-
-                Promise.all([p1, p2]).then((qqq) => {
+                Promise.all([person_data, frontline_data]).then((qqq) => {
                     selectPersons(Object.keys(person_data), start_date, end_date);
 
                     var global_bbox = null;
@@ -565,10 +575,16 @@
                     map.fitBounds(global_bbox);
 
                     //do it in here so that the layer icon is above the persons
-                    var saved_historic_map_url = storage.getItem(historic_map_key);
+                    var saved_historic_map_url = window.localStorage.getItem(historic_map_key);
                     if(saved_historic_map_url != null) {
                         initializeHistoricMap(saved_historic_map_url);
                     }
+
+                    map.spin(false);
+
+                    L.control.layers(base_layers, optional_layers, {position: 'bottomleft', collapsed:false}).addTo(map);
+
+                    L.control.ruler({position: 'bottomleft'}).addTo(map);
                 });
             }
             

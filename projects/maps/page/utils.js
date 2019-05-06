@@ -11,18 +11,18 @@ function load_jsons(paths) {
 }
 
 function polygonArea(points) { 
-    area = 0;         // Accumulates area in the loop
-    j = points.length-1;  // The last vertex is the 'previous' one to the first
+    var area = 0;         // Accumulates area in the loop
+    var j = points.length-1;  // The last vertex is the 'previous' one to the first
 
-    for (i=0; i<points.length; i++)
+    for (var i = 0; i < points.length; i++)
     {
         area = area +  (points[j][0]+points[i][0]) * (points[j][1]-points[i][1]); 
         j = i;  //j is previous vertex to i
     }
-    return area/2;
+    return Math.abs(area / 2);
 }
 
-var getCentroid2 = function (arr) {
+function getCentroid2(arr) {
     var twoTimesSignedArea = 0;
     var cxTimes6SignedArea = 0;
     var cyTimes6SignedArea = 0;
