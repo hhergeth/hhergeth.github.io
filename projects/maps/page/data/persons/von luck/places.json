@@ -211,5 +211,128 @@
   },
   "Bellengreville": {
     "coordinates": [49.1256, -0.21]
+  },
+  "Escoville": {
+    "coordinates": [49.2111, -0.2369]
+  },
+  "St. Honorine": {
+    "coordinates": [49.208721, -0.274450]
+  },
+  "Cuverville": {
+    "coordinates": [49.190453, -0.265374]
+  },
+  "Mondeville": {
+    "coordinates": [49.1747, -0.3197]
+  },
+  "Potigny": {
+    "coordinates": [48.9719, -0.2467]
+  },
+  "Cagny": {
+    "coordinates": [49.146881, -0.255887]
+  },
+  "Troarn": {
+    "coordinates": [49.1822, -0.1833]
+  },
+  "Longvillers": {
+    "coordinates": [49.05137, -0.63343]
+  },
+  "Falaise": {
+    "coordinates": [48.897222, -0.1975]
+  },
+  "Chambois": {
+    "coordinates": [48.8058, 0.1061]
+  },
+  "St. Lambert": {
+    "coordinates": [48.8208, 0.0758]
+  },
+  "Jumieges": {
+    "coordinates": [49.4344, 0.8214]
+  },
+  "Compiegne": {
+    "coordinates": [49.4149, 2.8231]
+  },
+  "Verdun": {
+    "coordinates": [49.162, 5.3876]
+  },
+  "Baccarat": {
+    "coordinates": [48.4492, 6.7389]
+  },
+  "Marlenheim": {
+    "coordinates": [48.6236, 7.4939]
+  },
+  "Molsheim": {
+    "coordinates": [48.54, 7.49]
+  },
+  "Epinal": {
+    "coordinates": [48.1744, 6.4512]
+  },
+  "Luneville": {
+    "coordinates": [48.5894, 6.5017]
+  },
+  "Eblange": {
+    "coordinates": [49.2242, 6.4828]
+  },
+  "Saarlautern": {
+    "coordinates": [49.316667, 6.75]
+  },
+  "Fischbach bei Dahn": {
+    "coordinates": [49.0875, 7.710556]
+  },
+  "Weißenburg": {
+    "coordinates": [49.04, 7.95]
+  },
+  "Rittershoffen": {
+    "coordinates": [48.9042, 7.9522]
+  },
+  "Kandel": {
+    "coordinates": [49.083333, 8.2]
+  },
+  "Küstrin": {
+    "coordinates": [52.588333, 14.65]
+  },
+  "Sagan": {
+    "coordinates": [51.616667, 15.316667]
+  },
+  "Görlitz": {
+    "coordinates": [51.152778, 14.987222]
+  },
+  "Lauban": {
+    "coordinates": [51.116667, 15.3]
+  },
+  "Spremberg": {
+    "coordinates": [51.571667, 14.379444]
+  },
+  "Halbe": {
+    "coordinates": [52.108611, 13.700833]
+  },
+  "Baruth": {
+    "coordinates": [52.05, 13.5]
+  },
+  "Dornswalde": {
+    "coordinates": [52.073545, 13.68433]
+  },
+  "Hoyerswerda": {
+    "coordinates": [51.433333, 14.25]
+  },
+  "Brest-Litowsk": {
+    "coordinates": [52.133333, 23.666667]
+  },
+  "Rostow": {
+    "coordinates": [47.233333, 39.716667]
+  },
+  "Rostawi": {
+    "coordinates": [41.533333, 45]
+  },
+  "Kutais": {
+    "coordinates": [42.25, 42.7]
+  },
+  "Tkibuli": {
+    "coordinates": [42.344167, 42.99]
+  },
+  "Tiflis": {
+    "coordinates": [41.716667, 44.783333]
+  },
+  "Kiew": {
+    "coordinates": [50.45, 30.523333]
   }
 }

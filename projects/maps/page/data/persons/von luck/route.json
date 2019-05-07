@@ -687,5 +687,315 @@
 	{
 		"date": "05.06.1944",
 		"place": "Bellengreville"
+	},
+	{
+		"date": "06.06.1944",
+		"place": "Bellengreville"
+	},
+	{
+		"date": "06.06.1944",
+		"place": "Escoville"
+	},
+	{
+		"date": "08.06.1944",
+		"place": "Escoville"
+	},
+	{
+		"date": "12.06.1944",
+		"place": "St. Honorine"
+	},
+	{
+		"date": "12.06.1944",
+		"place": "Cuverville"
+	},
+	{
+		"date": "16.06.1944",
+		"place": "Cuverville"
+	},
+	{
+		"date": "16.06.1944",
+		"place": "Mondeville"
+	},
+	{
+		"date": "29.06.1944",
+		"place": "Mondeville"
+	},
+	{
+		"date": "29.06.1944",
+		"place": "Potigny",
+		"annotations": "o"
+	},
+	{
+		"date": "14.07.1944",
+		"place": "Potigny",
+		"annotations": "o"
+	},
+	{
+		"date": "14.07.1944",
+		"place": "Paris"
+	},
+	{
+		"date": "18.07.1944",
+		"place": "Paris"
+	},
+	{
+		"date": "18.07.1944",
+		"place": "Cagny"
+	},
+	{
+		"date": "19.07.1944",
+		"place": "Cagny"
+	},
+	{
+		"date": "19.07.1944",
+		"place": "Troarn"
+	},
+	{
+		"date": "30.07.1944",
+		"place": "Troarn"
+	},
+	{
+		"date": "30.07.1944",
+		"place": "Longvillers",
+		"annotations": "o"
+	},
+	{
+		"date": "31.07.1944",
+		"place": "Falaise"
+	},
+	{
+		"date": "17.08.1944",
+		"place": "Falaise"
+	},
+	{
+		"date": "18.08.1944",
+		"place": "Chambois"
+	},
+	{
+		"date": "19.08.1944",
+		"place": "St. Lambert"
+	},
+	{
+		"date": "22.08.1944",
+		"place": "Jumieges",
+		"annotations": "o"
+	},
+	{
+		"date": "29.08.1944",
+		"place": "Jumieges",
+		"annotations": "o"
+	},
+	{
+		"date": "03.09.1944",
+		"place": "Compiegne",
+		"annotations": "z"
+	},
+	{
+		"date": "06.09.1944",
+		"place": "Verdun",
+		"annotations": "z"
+	},
+	{
+		"date": "08.09.1944",
+		"place": "Baccarat",
+		"annotations": "oz"
+	},
+	{
+		"date": "09.09.1944",
+		"place": "Marlenheim",
+		"annotations": "o"
+	},
+	{
+		"date": "10.09.1944",
+		"place": "Molsheim"
+	},
+	{
+		"date": "13.09.1944",
+		"place": "Epinal",
+		"annotations": "o"
+	},
+	{
+		"date": "20.09.1944",
+		"place": "Luneville",
+		"annotations": "oz"
+	},
+	{
+		"date": "11.11.1944",
+		"place": "Luneville",
+		"annotations": "zo"
+	},
+	{
+		"date": "12.11.1944",
+		"place": "Eblange",
+		"annotations": "oz"
+	},
+	{
+		"date": "18.11.1944",
+		"place": "Eblange",
+		"annotations": "oz"
+	},
+	{
+		"date": "18.11.1944",
+		"place": "Saarlautern"
+	},
+	{
+		"date": "15.12.1944",
+		"place": "Saarlautern",
+		"annotations": "z"
+	},
+	{
+		"date": "15.12.1944",
+		"place": "Fischbach bei Dahn",
+		"annotations": "zo"
+	},
+	{
+		"date": "01.01.1945",
+		"place": "Fischbach bei Dahn"
+	},
+	{
+		"date": "06.01.1945",
+		"place": "Weißenburg"
+	},
+	{
+		"date": "10.01.1945",
+		"place": "Rittershoffen"
+	},
+	{
+		"date": "25.01.1945",
+		"place": "Rittershoffen"
+	},
+	{
+		"date": "25.01.1945",
+		"place": "Kandel"
+	},
+	{
+		"date": "03.02.1945",
+		"place": "Kandel"
+	},
+	{
+		"date": "05.02.1945",
+		"place": "Berlin",
+		"annotations": "z"
+	},
+	{
+		"date": "05.02.1945",
+		"place": "Küstrin"
+	},
+	{
+		"date": "10.02.1945",
+		"place": "Küstrin"
+	},
+	{
+		"date": "13.02.1945",
+		"place": "Sagan"
+	},
+	{
+		"date": "17.02.1945",
+		"place": "Sagan"
+	},
+	{
+		"date": "20.02.1945",
+		"place": "Görlitz"
+	},
+	{
+		"date": "02.03.1945",
+		"place": "Görlitz"
+	},
+	{
+		"date": "09.03.1945",
+		"place": "Lauban"
+	},
+	{
+		"date": "15.03.1945",
+		"place": "Lauban"
+	},
+	{
+		"date": "15.03.1945",
+		"place": "Görlitz"
+	},
+	{
+		"date": "12.04.1945",
+		"place": "Görlitz"
+	},
+	{
+		"date": "15.04.1945",
+		"place": "Spremberg"
+	},
+	{
+		"date": "25.04.1945",
+		"place": "Halbe"
+	},
+	{
+		"date": "25.04.1945",
+		"place": "Baruth"
+	},
+	{
+		"date": "27.04.1945",
+		"place": "Dornswalde",
+		"annotations": "o"
+	},
+	{
+		"date": "01.05.1945",
+		"place": "Hoyerswerda",
+		"annotations": "z"
+	},
+	{
+		"date": "01.06.1945",
+		"place": "Brest-Litowsk",
+		"annotations": "z"
+	},
+	{
+		"date": "15.09.1945",
+		"place": "Rostow",
+		"annotations": "z"
+	},
+	{
+		"date": "01.10.1945",
+		"place": "Rostawi",
+		"annotations": "z"
+	},
+	{
+		"date": "25.10.1945",
+		"place": "Kutais",
+		"annotations": "z"
+	},
+	{
+		"date": "31.10.1945",
+		"place": "Tkibuli",
+		"annotations": "z"
+	},
+	{
+		"date": "31.10.1948",
+		"place": "Tkibuli",
+		"annotations": "z"
+	},
+	{
+		"date": "31.10.1948",
+		"place": "Tiflis",
+		"annotations": "z"
+	},
+	{
+		"date": "31.12.1948",
+		"place": "Tiflis",
+		"annotations": "z"
+	},
+	{
+		"date": "01.02.1949",
+		"place": "Kiew",
+		"annotations": "z"
+	},
+	{
+		"date": "01.12.1949",
+		"place": "Kiew",
+		"annotations": "z"
+	},
+	{
+		"date": "15.12.1949",
+		"place": "Brest-Litowsk",
+		"annotations": "z"
+	},
+	{
+		"date": "05.01.1950",
+		"place": "Hamburg"
 	}
 ]
