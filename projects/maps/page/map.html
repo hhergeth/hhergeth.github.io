@@ -107,28 +107,20 @@
         <script>
             var base_year = 1939;
             var year_colors = ['#ffe119', '#3cb44b', '#e6194B', '#4363d8', '#f58231', '#469990', '#f032e6', '#fabebe'];
+            var person_colors = ["green", "blue", "violet", "orange", "black"];
+            var historic_map_key = "historic-map-url";
+
             var picker = null;
             var map = null;
-            var person_groups = [];
-            var frontline_group = null;
-            var person_colors = ["green", "blue", "violet", "orange", "black"];
-            var frontline_label_group = null;
-            var circle_group = null;
-            var person_control = null;
-            var dhg_group;
             var base_layers = {};
             var optional_layers = {};
 
-            var historic_map_key = "historic-map-url";
-
+            var person_groups = [];
             var historic_map_group = null;
-            var historic_map_tile_label_group = null;
-            var historic_tile_labels_shown = false;
-            var ignore_map_remove = false;
-
-            var historic_maps_info = null;
-            var country_borders_geo = null;
-            var historic_maps_processed = null;
+            var frontline_group = null;
+            var frontline_label_group = null;
+            var circle_group = null;
+            var person_control = null;
 
             var person_data = {};
             var frontline_data = [];
@@ -365,7 +357,7 @@
                     }).addTo(historic_map_group);
                 });
 
-                historic_map_tile_label_group = new L.featureGroup();
+                var historic_map_tile_label_group = new L.featureGroup();
 
                 load_json('data/historic_maps_info.json').then(historic_maps_info => {
                     load_json(historic_map_url + '/historic_map_annotations.json').then(historic_maps_processed => {
@@ -396,6 +388,8 @@
                 var historic_map_tiles_name = "Übersichtskarten Names";
                 optional_layers[historic_map_tiles_name] = historic_map_tile_label_group;
 
+                var historic_tile_labels_shown = false;
+                var ignore_map_remove = false;
                 map.on({
                     overlayadd: function(e1) {
                         if (e1.name === historic_map_tiles_name){
@@ -409,19 +403,20 @@
                     }
                 });
 
+                //hide the map names on the large zooms
+                function toggleZoomHistoric(initial) {
+                    if(!initial && historic_tile_labels_shown) {
+                        if (map.getZoom() < 5){
+                            ignore_map_remove = true;
+                            map.removeLayer(historic_map_tile_label_group);
+                            ignore_map_remove = false;
+                        }
+                        else map.addLayer(historic_map_tile_label_group);
+                    }
+                }
+
                 map.on('zoomend', () => toggleZoomHistoric(false));
                 toggleZoomHistoric(true);
-            }
-
-            function toggleZoomHistoric(initial) {
-                if(!initial && historic_tile_labels_shown) {
-                    if (map.getZoom() < 5){
-                        ignore_map_remove = true;
-                        map.removeLayer(historic_map_tile_label_group);
-                        ignore_map_remove = false;
-                    }
-                    else map.addLayer(historic_map_tile_label_group);
-                }
             }
 
             //the DHG = Deutsche Heeres Gitter is very similar to UTM but only differes in scale factor and ellipsoid
@@ -444,7 +439,7 @@
                     }
                 });
 
-                for(var zone_idx = 30; zone_idx < 40; zone_idx++) {
+                for(var zone_idx = 30; zone_idx < 42; zone_idx++) {
                     var zone_grid = new L.DHG(zone_idx, {color:'red'});
                     layer.addLayer(zone_grid);
                 }
@@ -473,7 +468,6 @@
                 }).addLayer(osm_layer);
                 
                 map.setView([50.666667, 17.933333], 4);
-                map.doubleClickZoom.disable();
 
                 map.spin(true);
                 
@@ -486,7 +480,7 @@
                 frontline_label_group.addTo(frontline_group);
                 optional_layers["Hauptkampflinie"] = frontline_group;
 
-                dhg_group = new L.featureGroup();
+                var dhg_group = new L.featureGroup();
                 createDHG(dhg_group);
                 optional_layers["Deutsches Heeres Gitter"] = dhg_group;
                 
@@ -585,6 +579,7 @@
                     L.control.layers(base_layers, optional_layers, {position: 'bottomleft', collapsed:false}).addTo(map);
 
                     L.control.ruler({position: 'bottomleft'}).addTo(map);
+                    map.doubleClickZoom.disable();
                 });
             }
             
