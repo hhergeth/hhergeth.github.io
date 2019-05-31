@@ -1,0 +1,286 @@
+[
+	{
+		"date": "18.07.1942",
+		"place": "Chemnitz",
+		"annotations": "t"
+	},
+	{
+		"date": "15.09.1942",
+		"place": "Chemnitz",
+		"annotations": "t"
+	},
+	{
+		"date": "16.09.1942",
+		"place": "Dresden",
+		"annotations": "t"
+	},
+	{
+		"date": "17.10.1942",
+		"place": "Warschau",
+		"annotations": "t"
+	},
+	{
+		"date": "19.10.1942",
+		"place": "Brest-Litowsk",
+		"annotations": "t"
+	},
+	{
+		"date": "20.10.1942",
+		"place": "Kremenstövsk",
+		"annotations": "t"
+	},
+	{
+		"date": "30.10.1942",
+		"place": "Kremenstövsk",
+		"annotations": "t"
+	},
+	{
+		"date": "30.10.1942",
+		"place": "Bialystock",
+		"annotations": "t"
+	},
+	{
+		"date": "05.11.1942",
+		"place": "Minsk",
+		"annotations": "t"
+	},
+	{
+		"date": "10.11.1942",
+		"place": "Kalachy",
+		"annotations": "t"
+	},
+	{
+		"date": "24.12.1942",
+		"place": "Kalachy",
+		"annotations": "t"
+	},
+	{
+		"date": "25.12.1942",
+		"place": "Minsk",
+		"annotations": "t"
+	},
+	{
+		"date": "03.01.1943",
+		"place": "Kiew",
+		"annotations": "t"
+	},
+	{
+		"date": "05.02.1943",
+		"place": "Charkow",
+		"annotations": "t"
+	},
+	{
+		"date": "01.04.1943",
+		"place": "Aktyrkha",
+		"annotations": "tz"
+	},
+	{
+		"date": "05.04.1943",
+		"place": "Nedrigailow",
+		"annotations": "tz"
+	},
+	{
+		"date": "10.04.1943",
+		"place": "Romny",
+		"annotations": "tz"
+	},
+	{
+		"date": "11.04.1943",
+		"place": "Kiew",
+		"annotations": "tz"
+	},
+	{
+		"date": "13.04.1943",
+		"place": "Posen",
+		"annotations": "tz"
+	},
+	{
+		"date": "14.04.1943",
+		"place": "Berlin",
+		"annotations": "tz"
+	},
+	{
+		"date": "16.04.1943",
+		"place": "Magdeburg",
+		"annotations": "tz"
+	},
+	{
+		"date": "18.04.1943",
+		"place": "Berlin",
+		"annotations": "tz"
+	},
+	{
+		"date": "28.04.1943",
+		"place": "Berlin",
+		"annotations": "tz"
+	},
+	{
+		"date": "29.04.1943",
+		"place": "Posen",
+		"annotations": "tz"
+	},
+	{
+		"date": "02.05.1943",
+		"place": "Korosten",
+		"annotations": "tz"
+	},
+	{
+		"date": "03.05.1943",
+		"place": "Romny",
+		"annotations": "tz"
+	},
+	{
+		"date": "03.07.1943",
+		"place": "Tomarovka",
+		"annotations": "o"
+	},
+	{
+		"date": "15.07.1943",
+		"place": "Tomarovka",
+		"annotations": "oz"
+	},
+	{
+		"date": "05.09.1943",
+		"place": "Konotop"
+	},
+	{
+		"date": "15.09.1943",
+		"place": "Tsybli",
+		"annotations": "oz"
+	},
+	{
+		"date": "25.09.1943",
+		"place": "Tsybli",
+		"annotations": "oz"
+	},
+	{
+		"date": "25.09.1943",
+		"place": "Grigorowka",
+		"annotations": "oz"
+	},
+	{
+		"date": "5.10.1943",
+		"place": "Winniza",
+		"annotations": "z"
+	},
+	{
+		"date": "5.11.1943",
+		"place": "Lublin",
+		"annotations": "z"
+	},
+	{
+		"date": "12.11.1943",
+		"place": "Winniza",
+		"annotations": "z"
+	},
+	{
+		"date": "15.11.1943",
+		"place": "Pantaivka",
+		"annotations": "zo"
+	},
+	{
+		"date": "01.12.1943",
+		"place": "Kirowograd",
+		"annotations": "zo"
+	},
+	{
+		"date": "25.12.1943",
+		"place": "Kirowograd",
+		"annotations": "zo"
+	},
+	{
+		"date": "05.01.1944",
+		"place": "Kirowograd",
+		"annotations": "zo"
+	},
+	{
+		"date": "10.01.1944",
+		"place": "Sueka",
+		"annotations": "z"
+	},
+	{
+		"date": "01.04.1944",
+		"place": "Sueka",
+		"annotations": "z"
+	},
+	{
+		"date": "15.04.1944",
+		"place": "Targu Frumos",
+		"annotations": "zo"
+	},
+	{
+		"date": "01.07.1944",
+		"place": "Harlau",
+		"annotations": "zo"
+	},
+	{
+		"date": "01.09.1944",
+		"place": "Danzig",
+		"annotations": "zo"
+	},
+	{
+		"date": "15.09.1944",
+		"place": "Redau",
+		"annotations": "zo"
+	},
+	{
+		"date": "10.10.1944",
+		"place": "Memel",
+		"annotations": "z"
+	},
+	{
+		"date": "01.12.1944",
+		"place": "Memel",
+		"annotations": "z"
+	},
+	{
+		"date": "01.12.1944",
+		"place": "Königsberg",
+		"annotations": "z"
+	},
+	{
+		"date": "25.12.1944",
+		"place": "Pillau",
+		"annotations": "z"
+	},
+	{
+		"date": "18.01.1945",
+		"place": "Pillau",
+		"annotations": "z"
+	},
+	{
+		"date": "25.01.1945",
+		"place": "Danzig",
+		"annotations": "z"
+	},
+	{
+		"date": "24.03.1945",
+		"place": "Danzig",
+		"annotations": "z"
+	},
+	{
+		"date": "25.03.1945",
+		"place": "Hela",
+		"annotations": "z"
+	},
+	{
+		"date": "01.04.1945",
+		"place": "Hela",
+		"annotations": "z"
+	},
+	{
+		"date": "05.04.1945",
+		"place": "Kiel",
+		"annotations": "z"
+	},
+	{
+		"date": "01.06.1945",
+		"place": "Mannheim",
+		"annotations": "z"
+	},
+	{
+		"date": "01.07.1945",
+		"place": "Weißenburg",
+		"annotations": "z"
+	}
+]
