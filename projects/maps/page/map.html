@@ -11,13 +11,16 @@
         <script src="libs/Leaflet-MiniMap/Control.MiniMap.min.js" type="text/javascript"></script>
         <script src="libs/leaflet-measure-path.js" type="text/javascript"></script>
         <script src="libs/leaflet.contextmenu.min.js" type="text/javascript"></script>
+        <script src="libs/leaflet-sidebar.min.js" type="text/javascript"></script>
         <script src="libs/spin.js" type="text/javascript"></script>
         <script src="libs/leaflet.spin.js" type="text/javascript"></script>
         <script src="libs/leaflet-ruler.js" type="text/javascript"></script>
         <script src="libs/proj4.js" type="text/javascript"></script>
         <script src="libs/Leaflet.MetricGrid.js" type="text/javascript"></script>
+        <script src="libs/leaflet-shades.js" type="text/javascript"></script>
         <script src="frontline.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="persons.module.js" type="text/javascript" charset="UTF-8"></script>
+        <script src="location.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="utils.js" type="text/javascript" charset="UTF-8"></script>
         <link href="libs/leaflet/leaflet.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -27,6 +30,8 @@
         <link href="libs/leaflet.contextmenu.min.css" rel="stylesheet">
         <link href="libs/spin.css" rel="stylesheet">
         <link href="libs/leaflet-ruler.css" rel="stylesheet">
+        <link href="libs/leaflet-sidebar.min.css" rel="stylesheet">
+        <link href="libs/leaflet-shades.css" rel="stylesheet">
         <style>
             body {
                 padding: 0;
@@ -89,6 +94,7 @@
     </head>
     <body>
         <div id="map" data-tap-disabled="true"></div>
+
         <div id="date-element">
             <button class="timebutton" onclick="btn_change_date(event, 0, -1, 'days')">&lt;</button>
             <button class="timebutton" onclick="btn_change_date(event, 0, -1, 'months')">&lt;&lt;</button>
@@ -104,6 +110,91 @@
             <button class="timebutton" onclick="btn_change_date(event, 1, +1, 'months')">>></button>
             <button class="timebutton" onclick="btn_change_date(event, 1, +1, 'days')">></button>
         </div>
+
+        <div id="search-content">
+            <p>This tool lets you search for location names in the old 1:300000 historic maps.</p>
+
+            <p>You can select an area on the map to which you narrow down the search.</p>
+            <button class="btn" onclick="startSelectArea()" style="display: block; margin: 0 auto;">Select Area</button>
+
+            <p>Now enter a location name:</p>
+            <input type="text" id="loc-name" style="display: block; margin: 0 auto;">
+
+            <p>The name will be compared to all location names in the database using the <a href="https://en.wikipedia.org/wiki/Edit_distance">Edit Distance</a>. If the edit distance between the two is small than a certain threshhold it will be included in the results.<br><br> Maximum edit distance:</p>
+            <input type="text" id="max-distance" style="display: block; margin: 0 auto;" value="4">
+
+            <br>
+
+            <button class="btn" onclick="searchLocations()" style="display: block; margin: 0 auto;">Search</button>
+
+            <br>
+
+            <ul id="search-results"></ul>
+
+            <br>
+
+            <button class="btn" onclick="hideSelectedArea()" style="display: block; margin: 0 auto;">Delete</button>
+        </div>
+
+        <div id="sidebar" class="leaflet-sidebar collapsed">
+            <!-- nav tabs -->
+            <div class="leaflet-sidebar-tabs">
+                <!-- top aligned tabs -->
+                <ul role="tablist">
+                    <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+                    <li><a href="#text-search" role="tab"><i class="fa fa-search"></i></a></li>
+                    <li><a href="#historic-map" role="tab"><i class="fa fa-map"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- panel content -->
+            <div class="leaflet-sidebar-content">
+                <div class="leaflet-sidebar-pane" id="home">
+                    <h1 class="leaflet-sidebar-header">
+                        Interactive World War 2 Map
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+
+                    <p>description.</p>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="text-search">
+                    <h1 class="leaflet-sidebar-header">
+                        Text Search
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+
+                    <div id="search-element">
+                        <p>Please wait while the necessary data is loading</p>
+
+                        <br>
+
+                        <div id="search-element-spinner">
+                            <div id="loadingcont">
+                                <p id="loadingspinr">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="historic-map">
+                    <h1 class="leaflet-sidebar-header">
+                        Historic Maps
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+
+                    <p>Enter the url for the historic maps below:</p>
+
+                    <input type="text" id="historic-map-url-input" style="display: block; margin: 0 auto;" value="">
+
+                    <br>
+
+                    <button class="btn" onclick="loadHistoricMaps()" style="display: block; margin: 0 auto;">Load</button>
+                </div>
+            </div>
+        </div>
+
         <script>
             var base_year = 1939;
             var year_colors = ['#ffe119', '#3cb44b', '#e6194B', '#4363d8', '#f58231', '#469990', '#f032e6', '#fabebe'];
@@ -121,9 +212,12 @@
             var frontline_label_group = null;
             var circle_group = null;
             var person_control = null;
+            var rect = null;
+            var shades = null;
 
             var person_data = {};
             var frontline_data = [];
+            var location_data = null;
 
             function getPersonColor(idx) {
                 return person_colors[idx % person_colors.length];
@@ -452,6 +546,7 @@
                 base_layers["OSM"] = osm_layer;
             
                 map = L.map('map', {
+                    editable: true,
                     zoomControl: false,
                     attributionControl: false,
                     contextmenu: true,
@@ -466,6 +561,13 @@
                         callback: removeCircles
                     }]
                 }).addLayer(osm_layer);
+
+                var sidebar = L.control.sidebar({
+                    autopan: false,       // whether to maintain the centered map point when opening the sidebar
+                    closeButton: true,    // whether t add a close button to the panes
+                    container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+                    position: 'left',     // left or right
+                }).addTo(map);
                 
                 map.setView([50.666667, 17.933333], 4);
 
@@ -498,7 +600,7 @@
                     labels.push('<br>');
                     
                     /* dashes */
-                    var transits = [["k", "Fight"], ["v", "Hurt"], ["f", "Run"], ["u", "Leave"], ["t", "Trst"]];
+                    var transits = [["k", "Kämpfend"], ["v", "Verletzt"], ["f", "Fliehend"], ["u", "Urlaub"], ["t", "Transit"]];
                     labels.push('<strong>Transits</strong>');
                     for (var i = 0; i < transits.length; i++) {
                         var q = '<svg height="12" width="43"> <g fill="none" stroke="black" stroke-width="4"> <path stroke-dasharray="'
@@ -547,6 +649,7 @@
 
                 person_data = load_person_data();
                 frontline_data = load_frontline_data();
+                location_data = load_location_data();
 
                 Promise.all([person_data, frontline_data]).then((qqq) => {
                     selectPersons(Object.keys(person_data), start_date, end_date);
@@ -581,6 +684,76 @@
                     L.control.ruler({position: 'bottomleft'}).addTo(map);
                     map.doubleClickZoom.disable();
                 });
+
+                var target = document.getElementById('search-element-spinner');
+                var opts = {
+                    lines: 12, // The number of lines to draw
+                    length: 7, // The length of each line
+                    width: 4, // The line thickness
+                    radius: 10, // The radius of the inner circle
+                    color: '#000', // #rgb or #rrggbb
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: false, // Whether to use hardware acceleration
+                    top: '50%', // Top position relative to parent
+                    left: '50%', // Left position relative to parent
+                    shadow: '0 0 1px transparent', // Box-shadow for the lines
+                    position: 'absolute' // Element positioning
+                };
+                var spinner = new Spinner(opts).spin(target);
+                location_data.then((q) => {
+                    location_data = q;
+                    spinner.stop();
+                    document.getElementById("search-element").innerHTML = "";
+                    document.getElementById("search-element").appendChild(document.getElementById("search-content"));
+                });
+            }
+
+            function startSelectArea() {
+                if(rect != null)
+                    map.removeLayer(rect);
+                rect = map.editTools.startRectangle();
+                shades = new L.LeafletShades();
+                shades.addTo(map);
+            }
+
+            function searchLocations() {
+                var bbox = null;
+                if(rect != null) {
+                    bbox = rect.getBounds();
+                }
+                var text = document.getElementById("loc-name").value;
+                var max_distance = document.getElementById("max-distance").value;
+                var search_res = search_locations(location_data, bbox, text, max_distance);
+                document.getElementById('search-results').innerHTML = 'Search Results:';
+                for (var i = 0; i < search_res.length; i++) {
+                    var location_name = search_res[i].name;
+                    var location_box = search_res[i].box;
+                    var htmlObject = document.createElement('div');
+                    htmlObject.innerHTML = '<li onclick="jumpTo(this)">' + location_name + '</li>';
+                    htmlObject.box = location_box;
+                    document.getElementById('search-results').appendChild(htmlObject);
+                }
+            }
+
+            function jumpTo(e) {
+                var location_box = e.parentNode.box;
+                location_box = L.latLngBounds(L.latLng(location_box[0]), L.latLng(location_box[1]));
+                map.setView(location_box.getCenter(), 13)
+            }
+
+            function loadHistoricMaps() {
+                var url = document.getElementById("historic-map-url-input").value;
+                window.localStorage.setItem(historic_map_key, url);
+                window.location.reload(false); 
+            }
+
+            function hideSelectedArea() {
+                map.removeLayer(shades);
+                map.removeLayer(rect);
+                rect = null;
+                document.getElementById('search-results').innerHTML = "";
             }
             
             function showCoordinates(e) {
