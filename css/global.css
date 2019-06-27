@@ -81,6 +81,11 @@ a:active {
 	display: inline-block;
 }
 
+.connect-button {
+    padding-top: 20px;
+	display: inline-block;
+}
+
 .connect a {
 	padding-left: 7px;
 	padding-right: 7px;
