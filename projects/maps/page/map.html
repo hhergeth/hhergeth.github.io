@@ -23,7 +23,7 @@
         <script src="location.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="utils.js" type="text/javascript" charset="UTF-8"></script>
         <link href="libs/leaflet/leaflet.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link href="libs/lightpick.css" rel="stylesheet">
         <link href="libs/Leaflet-MiniMap/Control.MiniMap.min.css" rel="stylesheet">
         <link href="libs/leaflet-measure-path.css" rel="stylesheet">
@@ -548,6 +548,7 @@
                 map = L.map('map', {
                     editable: true,
                     zoomControl: false,
+                    zoomSnap: 0.25,
                     attributionControl: false,
                     contextmenu: true,
                     contextmenuItems: [{

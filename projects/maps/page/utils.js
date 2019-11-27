@@ -10,13 +10,13 @@ function load_jsons(paths) {
     return Promise.all(ps);
 }
 
-function polygonArea(points) { 
+function polygonArea(points) {
     var area = 0;         // Accumulates area in the loop
     var j = points.length-1;  // The last vertex is the 'previous' one to the first
 
     for (var i = 0; i < points.length; i++)
     {
-        area = area +  (points[j][0]+points[i][0]) * (points[j][1]-points[i][1]); 
+        area = area +  (points[j][0]+points[i][0]) * (points[j][1]-points[i][1]);
         j = i;  //j is previous vertex to i
     }
     return Math.abs(area / 2);
@@ -39,12 +39,12 @@ function getCentroid2(arr) {
         cyTimes6SignedArea += (y(i) + y(i+1)) * twoSA;
     }
     var sixSignedArea = 3 * twoTimesSignedArea;
-    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
+    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];
 }
 
 function levenshteinDistance(a, b) {
-    if(a.length == 0) return b.length; 
-    if(b.length == 0) return a.length; 
+    if(a.length == 0) return b.length;
+    if(b.length == 0) return a.length;
 
     var matrix = [];
 
@@ -79,3 +79,18 @@ function levenshteinDistance(a, b) {
 //https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#ECMAScript_.28JavaScript.2FActionScript.2C_etc..29
 function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
 function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
+
+// Returns if a value is a string
+function isString (value) {
+    return typeof value === 'string' || value instanceof String;
+}
+
+// Returns if a value is really a number
+function isNumber (value) {
+    return typeof value === 'number' && isFinite(value);
+}
+
+// Returns if a value is an array
+function isArray (value) {
+    return value && typeof value === 'object' && value.constructor === Array;
+}
