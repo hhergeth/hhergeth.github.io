@@ -1,0 +1,249 @@
+[
+	{
+		"date": "01.08.1941",
+		"place": "Fürstenfeld",
+		"annotations": "t"
+	},
+	{
+		"date": "12.01.1943",
+		"place": "Fürstenfeld"
+	},
+	{
+		"date": "12.01.1943",
+		"place": "Heidelberg",
+		"annotations": "t"
+	},
+	{
+		"date": "12.01.1943",
+		"place": "Neckargerach",
+		"annotations": "t"
+	},
+	{
+		"date": "15.04.1943",
+		"place": "Neckargerach"
+	},
+	{
+		"date": "15.04.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "15.06.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "15.06.1943",
+		"place": "Marburg",
+		"annotations": "t"
+	},
+	{
+		"date": "01.09.1943",
+		"place": "Marburg"
+	},
+	{
+		"date": "01.09.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "15.09.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "15.09.1943",
+		"place": "Marburg",
+		"annotations": "t"
+	},
+	{
+		"date": "13.11.1943",
+		"place": "Marburg"
+	},
+	{
+		"date": "13.11.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "27.11.1943",
+		"place": "Fürstenfeld",
+		"annotations": "u"
+	},
+	{
+		"date": "27.11.1943",
+		"place": "Graz",
+		"annotations": "t"
+	},
+	{
+		"date": "01.12.1943",
+		"place": "Klagenfurt",
+		"annotations": "t"
+	},
+	{
+		"date": "05.12.1943",
+		"place": "Odessa",
+		"annotations": "t"
+	},
+	{
+		"date": "09.12.1943",
+		"place": "Nikolajew",
+		"annotations": "t"
+	},
+	{
+		"date": "11.12.1943",
+		"place": "Nikopol",
+		"annotations": "t"
+	},
+	{
+		"date": "11.12.1943",
+		"place": "Primernyj",
+		"annotations": "o"
+	},
+	{
+		"date": "11.12.1943",
+		"place": "Primernyj",
+		"annotations": "o"
+	},
+	{
+		"date": "02.02.1944",
+		"place": "Lapinka",
+		"annotations": "of"
+	},
+	{
+		"date": "05.02.1944",
+		"place": "Tschertomlyk",
+		"annotations": "of"
+	},
+	{
+		"date": "12.03.1944",
+		"place": "Malejwka",
+		"annotations": "tf"
+	},
+	{
+		"date": "19.03.1944",
+		"place": "Nowo-Belousowka"
+	},
+	{
+		"date": "27.03.1944",
+		"place": "Nowo-Belousowka"
+	},
+	{
+		"date": "04.04.1944",
+		"place": "Freiburg",
+		"annotations": "f"
+	},
+	{
+		"date": "07.04.1944",
+		"place": "Freiburg",
+		"annotations": "t"
+	},
+	{
+		"date": "13.04.1944",
+		"place": "Tiraspol",
+		"annotations": "f"
+	},
+	{
+		"date": "14.04.1944",
+		"place": "Tighina",
+		"annotations": "f"
+	},
+	{
+		"date": "22.05.1944",
+		"place": "Tighina",
+		"annotations": "t"
+	},
+	{
+		"date": "28.05.1944",
+		"place": "Campulung",
+		"annotations": "t"
+	},
+	{
+		"date": "25.08.1944",
+		"place": "Campulung"
+	},
+	{
+		"date": "23.10.1944",
+		"place": "Nagy Kallo",
+		"annotations": "t"
+	},
+	{
+		"date": "27.10.1944",
+		"place": "Nagy Kallo"
+	},
+	{
+		"date": "28.10.1944",
+		"place": "Miskolc",
+		"annotations": "v"
+	},
+	{
+		"date": "18.11.1944",
+		"place": "Miskolc",
+		"annotations": "v"
+	},
+	{
+		"date": "18.11.1944",
+		"place": "Oszlar",
+		"annotations": "t"
+	},
+	{
+		"date": "20.11.1944",
+		"place": "Oszlar"
+	},
+	{
+		"date": "01.12.1944",
+		"place": "Sajos"
+	},
+	{
+		"date": "29.01.1945",
+		"place": "Brezno"
+	},
+	{
+		"date": "12.02.1945",
+		"place": "Banská Bystrica"
+	},
+	{
+		"date": "09.05.1945",
+		"place": "Olmütz",
+		"annotations": "f"
+	},
+	{
+		"date": "20.05.1945",
+		"place": "Budapest",
+		"annotations": "t"
+	},
+	{
+		"date": "01.07.1945",
+		"place": "Gorki",
+		"annotations": "t"
+	},
+	{
+		"date": "20.11.1947",
+		"place": "Gorki"
+	},
+	{
+		"date": "01.12.1947",
+		"place": "Moskau",
+		"annotations": "t"
+	},
+	{
+		"date": "12.12.1947",
+		"place": "Odessa",
+		"annotations": "t"
+	},
+	{
+		"date": "24.12.1947",
+		"place": "Wien",
+		"annotations": "t"
+	},
+	{
+		"date": "24.12.1947",
+		"place": "Graz",
+		"annotations": "t"
+	},
+	{
+		"date": "24.12.1947",
+		"place": "Fürstenfeld",
+		"annotations": "t"
+	}
+]
