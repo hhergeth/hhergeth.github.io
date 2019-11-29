@@ -1,0 +1,185 @@
+{
+  "Carequebut": {
+    "coordinates": [49.3733, -1.3286]
+  },
+  "Carentan": {
+    "coordinates": [49.3, -1.25]
+  },
+  "Saint-Lô": {
+    "coordinates": [49.12, -1.09]
+  },
+  "Paris": {
+    "coordinates": [48.8567, 2.3508]
+  },
+  "Erfurt": {
+    "coordinates": [50.983333, 11.033333]
+  },
+  "Dresden": {
+    "coordinates": [51.033333, 13.733333]
+  },
+  "Odessa": {
+    "coordinates": [46.485722, 30.743444]
+  },
+  "Kiew": {
+    "coordinates": [50.45, 30.523333]
+  },
+  "Nowo Glyboff": {
+    "coordinates": [51.148424, 30.566842]
+  },
+  "Schydomyr": {
+    "coordinates": [50.25, 28.666667]
+  },
+  "Lemberg": {
+    "coordinates": [49.83, 24.014167]
+  },
+  "Krakau": {
+    "coordinates": [50.061389, 19.937222]
+  },
+  "Berlin": {
+    "coordinates": [52.516667, 13.388889]
+  },
+  "Mölln": {
+    "coordinates": [53.626944, 10.684722]
+  },
+  "Lauenburg": {
+    "coordinates": [53.383333, 10.566667]
+  },
+  "Köln": {
+    "coordinates": [50.936389, 6.952778]
+  },
+  "Trier": {
+    "coordinates": [49.75, 6.633333]
+  },
+  "Reinsfeld": {
+    "coordinates": [49.678611, 6.878611]
+  },
+  "Marburg": {
+    "coordinates": [50.81, 8.770833]
+  },
+  "Hermeskeil": {
+    "coordinates": [49.657222, 6.948889]
+  },
+  "Gießen": {
+    "coordinates": [50.583333, 8.666667]
+  },
+  "Winnyzja": {
+    "coordinates": [49.233333, 28.483333]
+  },
+  "Berdytschiw": {
+    "coordinates": [49.891667, 28.6125]
+  },
+  "Librisk": {
+    "coordinates": [48.378602, 27.511826]
+  },
+  "Balti": {
+    "coordinates": [47.766667, 27.916667]
+  },
+  "Czernowitz": {
+    "coordinates": [48.3, 25.93]
+  },
+  "Prag": {
+    "coordinates": [50.083333, 14.416667]
+  },
+  "Regensburg": {
+    "coordinates": [49.016667, 12.083333]
+  },
+  "Wiesental": {
+    "coordinates": [50.379167, 8.613889]
+  },
+  "Breslau": {
+    "coordinates": [51.1, 17.033333]
+  },
+  "Litzmannstadt": {
+    "coordinates": [51.776944, 19.454722]
+  },
+  "Skierniewice": {
+    "coordinates": [51.966667, 20.15]
+  },
+  "Tomaszowka": {
+    "coordinates": [51.533333, 20.016667]
+  },
+  "Leginowo": {
+    "coordinates": [52.4, 20.883333]
+  },
+  "Borki": {
+    "coordinates": [52.465434, 21.116585]
+  },
+  "Gak": {
+    "coordinates": [52.275604, 20.891652]
+  },
+  "Zoliborz": {
+    "coordinates": [52.266667, 20.983333]
+  },
+  "Warschau-Weichsel": {
+    "coordinates": [52.242661, 21.027245]
+  },
+  "Weichsel-Bridgehead": {
+    "coordinates": [52.363191, 20.998998]
+  },
+  "Jablonna": {
+    "coordinates": [52.366667, 20.9]
+  },
+  "Recopole": {
+    "coordinates": [52.368937, 21.033427]
+  },
+  "Modlin": {
+    "coordinates": [52.438333, 20.681944]
+  },
+  "Stanislawa": {
+    "coordinates": [52.514127, 20.91565]
+  },
+  "Treuburg": {
+    "coordinates": [54.033333, 22.5]
+  },
+  "Eibenau": {
+    "coordinates": [54.15, 22.3333]
+  },
+  "Hausbruch": {
+    "coordinates": [54.231572, 22.452106]
+  },
+  "Raczki": {
+    "coordinates": [53.983333, 22.783333]
+  },
+  "Filipow": {
+    "coordinates": [54.180556, 22.620833]
+  },
+  "Lyik": {
+    "coordinates": [53.833333, 22.35]
+  },
+  "Allenstein": {
+    "coordinates": [53.777778, 20.479167]
+  },
+  "Rippin": {
+    "coordinates": [53.066667, 19.4]
+  },
+  "Frankenhagen": {
+    "coordinates": [53.646724, 17.707686]
+  },
+  "Schiefenhorst": {
+    "coordinates": [54.335869, 18.926151]
+  },
+  "Danzig": {
+    "coordinates": [54.366667, 18.633333]
+  },
+  "Marienwerder": {
+    "coordinates": [53.733333, 18.933333]
+  },
+  "Deutsch Eylau": {
+    "coordinates": [53.6, 19.566667]
+  },
+  "Insterburg": {
+    "coordinates": [54.634722, 21.811944]
+  },
+  "Moskau": {
+    "coordinates": [55.75, 37.616667]
+  },
+  "Kirow": {
+    "coordinates": [58.6, 49.683333]
+  },
+  "Wladimir": {
+    "coordinates": [56.133333, 40.416667]
+  },
+  "Gorki": {
+    "coordinates": [56.326944, 44.0075]
+  }
+}
