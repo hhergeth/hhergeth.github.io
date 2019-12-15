@@ -1,0 +1,842 @@
+[
+  {
+    "date": "04.10.1940",
+    "place": "Sondershausen"
+  },
+  {
+    "date": "15.12.1940",
+    "place": "Sondershausen"
+  },
+  {
+    "date": "20.12.1940",
+    "place": "Hermannstadt"
+  },
+  {
+    "date": "31.12.1940",
+    "place": "Hermannstadt"
+  },
+  {
+    "date": "31.12.1940",
+    "place": "Piatra Neamt"
+  },
+  {
+    "date": "13.05.1941",
+    "place": "Piatra Neamt"
+  },
+  {
+    "date": "19.05.1941",
+    "place": "Seibersdorf"
+  },
+  {
+    "date": "19.05.1941",
+    "place": "Ellguth Turawa"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Ellguth Turawa"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Hochfelde"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Radau"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Föhrendorf"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Freihöfen"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Ludwigstal"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Kattowice"
+  },
+  {
+    "date": "19.06.1941",
+    "place": "Szecozini"
+  },
+  {
+    "date": "20.06.1941",
+    "place": "Szecozini"
+  },
+  {
+    "date": "20.06.1941",
+    "place": "Golemowy"
+  },
+  {
+    "date": "20.06.1941",
+    "place": "Jendrezow"
+  },
+  {
+    "date": "20.06.1941",
+    "place": "Staszod"
+  },
+  {
+    "date": "21.06.1941",
+    "place": "Staszod"
+  },
+  {
+    "date": "21.06.1941",
+    "place": "Osiek"
+  },
+  {
+    "date": "21.06.1941",
+    "place": "Sandomirz"
+  },
+  {
+    "date": "21.06.1941",
+    "place": "Bilgoraj"
+  },
+  {
+    "date": "22.06.1941",
+    "place": "Bilgoraj"
+  },
+  {
+    "date": "22.06.1941",
+    "place": "Zamosch"
+  },
+  {
+    "date": "23.06.1941",
+    "place": "Zamosch"
+  },
+  {
+    "date": "24.06.1941",
+    "place": "Hrubieszow"
+  },
+  {
+    "date": "28.06.1941",
+    "place": "Luck"
+  },
+  {
+    "date": "09.07.1941",
+    "place": "Chitomir"
+  },
+  {
+    "date": "28.08.1941",
+    "place": "Dnjepropetrowsk"
+  },
+  {
+    "date": "17.09.1941",
+    "place": "Dnjepropetrowsk"
+  },
+  {
+    "date": "17.09.1941",
+    "place": "Krementschuk"
+  },
+  {
+    "date": "10.10.1941",
+    "place": "Mariapohl"
+  },
+  {
+    "date": "18.10.1941",
+    "place": "Taganrog"
+  },
+  {
+    "date": "28.11.1941",
+    "place": "Kamennyj Brod"
+  },
+  {
+    "date": "30.12.1941",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "10.01.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "10.01.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "16.01.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "16.01.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "30.01.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "30.01.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "20.02.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "20.02.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "28.02.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "28.02.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "03.03.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "03.03.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "14.03.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "14.03.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "15.03.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "15.03.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "19.03.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "19.03.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "30.05.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "30.05.1942",
+    "place": "Neklimowka"
+  },
+  {
+    "date": "30.05.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "30.05.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "03.06.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "03.06.1942",
+    "place": "Pokrowskoje"
+  },
+  {
+    "date": "03.06.1942",
+    "place": "Neklimowka"
+  },
+  {
+    "date": "03.06.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "11.07.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "12.07.1942",
+    "place": "Starußja Latka"
+  },
+  {
+    "date": "19.07.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "21.07.1942",
+    "place": "Ponomarew"
+  },
+  {
+    "date": "21.07.1942",
+    "place": "Trotzkoje"
+  },
+  {
+    "date": "23.07.1942",
+    "place": "Rostow Flughafen"
+  },
+  {
+    "date": "28.07.1942",
+    "place": "Rostow Flughafen"
+  },
+  {
+    "date": "28.07.1942",
+    "place": "Bataisk"
+  },
+  {
+    "date": "05.08.1942",
+    "place": "Armawir"
+  },
+  {
+    "date": "06.08.1942",
+    "place": "Kurbanaja"
+  },
+  {
+    "date": "07.08.1942",
+    "place": "Labanskaja"
+  },
+  {
+    "date": "07.08.1942",
+    "place": "Kurbanaja"
+  },
+  {
+    "date": "09.08.1942",
+    "place": "Maikop"
+  },
+  {
+    "date": "14.08.1942",
+    "place": "Maikop"
+  },
+  {
+    "date": "14.08.1942",
+    "place": "Labanskaja"
+  },
+  {
+    "date": "15.08.1942",
+    "place": "Armawir"
+  },
+  {
+    "date": "16.08.1942",
+    "place": "Woroschilowsk"
+  },
+  {
+    "date": "16.08.1942",
+    "place": "Serjewoskoje"
+  },
+  {
+    "date": "17.08.1942",
+    "place": "Szabla"
+  },
+  {
+    "date": "19.08.1942",
+    "place": "Mochos-Alekzandrowskoje"
+  },
+  {
+    "date": "20.08.1942",
+    "place": "Solomenskoje"
+  },
+  {
+    "date": "20.08.1942",
+    "place": "Mochos-Alekzandrowskoje"
+  },
+  {
+    "date": "22.08.1942",
+    "place": "Solomenskoje"
+  },
+  {
+    "date": "22.08.1942",
+    "place": "Edisjahr"
+  },
+  {
+    "date": "28.08.1942",
+    "place": "Meckenskaja"
+  },
+  {
+    "date": "28.08.1942",
+    "place": "Nikolajewskaja"
+  },
+  {
+    "date": "28.08.1942",
+    "place": "Jerschkaja"
+  },
+  {
+    "date": "29.08.1942",
+    "place": "Nikolajewskaja"
+  },
+  {
+    "date": "29.08.1942",
+    "place": "Karschyga-Aul"
+  },
+  {
+    "date": "29.08.1942",
+    "place": "Meckenskaja"
+  },
+  {
+    "date": "31.08.1942",
+    "place": "Scherwenskaja"
+  },
+  {
+    "date": "31.08.1942",
+    "place": "Meckenskaja"
+  },
+  {
+    "date": "08.09.1942",
+    "place": "Mosdok"
+  },
+  {
+    "date": "11.09.1942",
+    "place": "Mosdok"
+  },
+  {
+    "date": "11.09.1942",
+    "place": "Maiski"
+  },
+  {
+    "date": "11.09.1942",
+    "place": "Mosdok"
+  },
+  {
+    "date": "12.09.1942",
+    "place": "Mosdok"
+  },
+  {
+    "date": "12.09.1942",
+    "place": "Sowjetskaja"
+  },
+  {
+    "date": "13.09.1942",
+    "place": "Sowjetskaja"
+  },
+  {
+    "date": "14.09.1942",
+    "place": "Sowjetskaja"
+  },
+  {
+    "date": "14.09.1942",
+    "place": "Georgijewsk"
+  },
+  {
+    "date": "14.09.1942",
+    "place": "Pjatigorsk"
+  },
+  {
+    "date": "21.09.1942",
+    "place": "Pjatigorsk"
+  },
+  {
+    "date": "21.09.1942",
+    "place": "Georgijewsk"
+  },
+  {
+    "date": "21.09.1942",
+    "place": "Sowjetskaja"
+  },
+  {
+    "date": "22.09.1942",
+    "place": "Gnadenburg"
+  },
+  {
+    "date": "04.10.1942",
+    "place": "Gnadenburg"
+  },
+  {
+    "date": "05.10.1942",
+    "place": "Prochladny"
+  },
+  {
+    "date": "05.10.1942",
+    "place": "Sowjetskaja"
+  },
+  {
+    "date": "06.10.1942",
+    "place": "Georgijewsk"
+  },
+  {
+    "date": "06.10.1942",
+    "place": "Mineraly Wody"
+  },
+  {
+    "date": "08.10.1942",
+    "place": "Bataisk"
+  },
+  {
+    "date": "11.10.1942",
+    "place": "Dnjepropetrowsk"
+  },
+  {
+    "date": "13.10.1942",
+    "place": "Przemisl"
+  },
+  {
+    "date": "13.10.1942",
+    "place": "Krakau"
+  },
+  {
+    "date": "13.10.1942",
+    "place": "Breslau"
+  },
+  {
+    "date": "14.10.1942",
+    "place": "Magdeburg"
+  },
+  {
+    "date": "15.10.1942",
+    "place": "Völpke"
+  },
+  {
+    "date": "03.11.1942",
+    "place": "Völpke"
+  },
+  {
+    "date": "03.11.1942",
+    "place": "Eilsleben"
+  },
+  {
+    "date": "03.11.1942",
+    "place": "Magdeburg"
+  },
+  {
+    "date": "03.11.1942",
+    "place": "Berlin"
+  },
+  {
+    "date": "03.11.1942",
+    "place": "Breslau"
+  },
+  {
+    "date": "04.11.1942",
+    "place": "Przemisl"
+  },
+  {
+    "date": "05.11.1942",
+    "place": "Reichshof"
+  },
+  {
+    "date": "06.11.1942",
+    "place": "Snamenka"
+  },
+  {
+    "date": "10.11.1942",
+    "place": "Snamenka"
+  },
+  {
+    "date": "11.11.1942",
+    "place": "Taganrog"
+  },
+  {
+    "date": "11.11.1942",
+    "place": "Bataisk"
+  },
+  {
+    "date": "11.11.1942",
+    "place": "Pawlowskaja"
+  },
+  {
+    "date": "12.11.1942",
+    "place": "Tichorez"
+  },
+  {
+    "date": "12.11.1942",
+    "place": "Kropotkin"
+  },
+  {
+    "date": "13.11.1942",
+    "place": "Armawir"
+  },
+  {
+    "date": "14.11.1942",
+    "place": "Mineraly Wody"
+  },
+  {
+    "date": "14.11.1942",
+    "place": "Georgijewsk"
+  },
+  {
+    "date": "14.11.1942",
+    "place": "Prochladny"
+  },
+  {
+    "date": "16.11.1942",
+    "place": "Ardon"
+  },
+  {
+    "date": "18.12.1942",
+    "place": "Ardon"
+  },
+  {
+    "date": "18.12.1942",
+    "place": "Nikolajewskaja (Kaukasus)"
+  },
+  {
+    "date": "25.12.1942",
+    "place": "Nikolajewskaja (Kaukasus)"
+  },
+  {
+    "date": "25.12.1942",
+    "place": "Schikola"
+  },
+  {
+    "date": "26.12.1942",
+    "place": "Schikola"
+  },
+  {
+    "date": "26.12.1942",
+    "place": "Uruch"
+  },
+  {
+    "date": "27.12.1942",
+    "place": "Lesken II"
+  },
+  {
+    "date": "27.12.1942",
+    "place": "Terek"
+  },
+  {
+    "date": "29.12.1942",
+    "place": "Terek"
+  },
+  {
+    "date": "30.12.1942",
+    "place": "Naltschik"
+  },
+  {
+    "date": "30.12.1942",
+    "place": "Pjatigorsk"
+  },
+  {
+    "date": "04.01.1943",
+    "place": "Pjatigorsk"
+  },
+  {
+    "date": "04.01.1943",
+    "place": "Mineraly Wody"
+  },
+  {
+    "date": "05.01.1943",
+    "place": "Armawir"
+  },
+  {
+    "date": "05.01.1943",
+    "place": "Tichorez"
+  },
+  {
+    "date": "06.01.1943",
+    "place": "Bataisk"
+  },
+  {
+    "date": "06.01.1943",
+    "place": "Bataisk"
+  },
+  {
+    "date": "06.01.1943",
+    "place": "Rostow"
+  },
+  {
+    "date": "06.01.1943",
+    "place": "Taganrog"
+  },
+  {
+    "date": "10.01.1943",
+    "place": "Dnjepropetrowsk"
+  },
+  {
+    "date": "29.01.1943",
+    "place": "Dnjepropetrowsk"
+  },
+  {
+    "date": "03.02.1943",
+    "place": "Schweidnitz"
+  },
+  {
+    "date": "21.07.1943",
+    "place": "Schweidnitz"
+  },
+  {
+    "date": "22.07.1943",
+    "place": "Sondershausen"
+  },
+  {
+    "date": "14.04.1944",
+    "place": "Sondershausen"
+  },
+  {
+    "date": "16.04.1944",
+    "place": "Magdeburg"
+  },
+  {
+    "date": "16.04.1944",
+    "place": "Berlin"
+  },
+  {
+    "date": "16.04.1944",
+    "place": "Breslau"
+  },
+  {
+    "date": "16.04.1944",
+    "place": "Brünn"
+  },
+  {
+    "date": "17.04.1944",
+    "place": "Wien"
+  },
+  {
+    "date": "20.04.1944",
+    "place": "Wien"
+  },
+  {
+    "date": "20.04.1944",
+    "place": "Breslau"
+  },
+  {
+    "date": "21.04.1944",
+    "place": "Krakau"
+  },
+  {
+    "date": "22.04.1944",
+    "place": "Przemisl"
+  },
+  {
+    "date": "30.04.1944",
+    "place": "Przemisl"
+  },
+  {
+    "date": "01.05.1944",
+    "place": "Stry"
+  },
+  {
+    "date": "02.05.1944",
+    "place": "Munkacz"
+  },
+  {
+    "date": "03.05.1944",
+    "place": "Des"
+  },
+  {
+    "date": "05.05.1944",
+    "place": "Neumarkt"
+  },
+  {
+    "date": "06.05.1944",
+    "place": "Palanka"
+  },
+  {
+    "date": "07.05.1944",
+    "place": "Maraschesti"
+  },
+  {
+    "date": "08.05.1944",
+    "place": "Tecuci"
+  },
+  {
+    "date": "09.05.1944",
+    "place": "Barlad"
+  },
+  {
+    "date": "12.05.1944",
+    "place": "Romanesti"
+  },
+  {
+    "date": "12.05.1944",
+    "place": "Kischinew"
+  },
+  {
+    "date": "14.05.1944",
+    "place": "Kischinew"
+  },
+  {
+    "date": "14.05.1944",
+    "place": "Floreni"
+  },
+  {
+    "date": "02.06.1944",
+    "place": "Floreni"
+  },
+  {
+    "date": "02.06.1944",
+    "place": "Chirka"
+  },
+  {
+    "date": "07.06.1944",
+    "place": "Chirka"
+  },
+  {
+    "date": "08.06.1944",
+    "place": "Braila"
+  },
+  {
+    "date": "13.06.1944",
+    "place": "Braila"
+  },
+  {
+    "date": "26.08.1944",
+    "place": "Bolgrad"
+  },
+  {
+    "date": "26.08.1944",
+    "place": "Galatz"
+  },
+  {
+    "date": "27.08.1944",
+    "place": "Braila (Rumänien)"
+  },
+  {
+    "date": "30.08.1944",
+    "place": "Slobozia"
+  },
+  {
+    "date": "01.09.1944",
+    "place": "Popina"
+  },
+  {
+    "date": "03.09.1944",
+    "place": "Popina"
+  },
+  {
+    "date": "06.09.1944",
+    "place": "Raßgrad"
+  },
+  {
+    "date": "11.09.1944",
+    "place": "Raßgrad"
+  },
+  {
+    "date": "15.09.1944",
+    "place": "Ismail"
+  },
+  {
+    "date": "10.10.1944",
+    "place": "Ismail"
+  },
+  {
+    "date": "15.10.1944",
+    "place": "Odessa"
+  },
+  {
+    "date": "01.11.1944",
+    "place": "Kasan"
+  },
+  {
+    "date": "21.07.1945",
+    "place": "Kasan"
+  },
+  {
+    "date": "05.08.1945",
+    "place": "Kasan"
+  },
+  {
+    "date": "10.08.1945",
+    "place": "Berlin"
+  },
+  {
+    "date": "10.08.1945",
+    "place": "Magdeburg"
+  },
+  {
+    "date": "10.08.1945",
+    "place": "Eilsleben"
+  },
+  {
+    "date": "10.08.1945",
+    "place": "Völpke"
+  }
+]

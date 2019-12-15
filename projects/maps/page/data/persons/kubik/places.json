@@ -1,0 +1,314 @@
+{
+  "Sondershausen": {
+    "coordinates": [51.366667, 10.866667]
+  },
+  "Hermannstadt": {
+    "coordinates": [45.792778, 24.151944]
+  },
+  "Piatra Neamt": {
+    "coordinates": [46.9275, 26.370833]
+  },
+  "Seibersdorf": {
+    "coordinates": [49.878194, 18.610278]
+  },
+  "Ellguth Turawa": {
+    "coordinates": [50.78605, 18.181428]
+  },
+  "Hochfelde": {
+    "coordinates": [50.766667, 18.216667]
+  },
+  "Radau": {
+    "coordinates": [50.783333, 18.283333]
+  },
+  "Föhrendorf": {
+    "coordinates": [50.761944, 18.347222]
+  },
+  "Freihöfen": {
+    "coordinates": [50.771111, 18.370556]
+  },
+  "Ludwigstal": {
+    "coordinates": [50.585833, 19.059722]
+  },
+  "Kattowice": {
+    "coordinates": [50.266667, 19.016667]
+  },
+  "Szecozini": {
+    "coordinates": [50.624774, 19.818859]
+  },
+  "Golemowy": {
+    "coordinates": [50.63079, 19.87951]
+  },
+  "Jendrezow": {
+    "coordinates": [50.633333, 20.3]
+  },
+  "Staszod": {
+    "coordinates": [50.564167, 21.166944]
+  },
+  "Osiek": {
+    "coordinates": [50.52, 21.442778]
+  },
+  "Sandomirz": {
+    "coordinates": [50.683333, 21.75]
+  },
+  "Bilgoraj": {
+    "coordinates": [50.55, 22.7]
+  },
+  "Zamosch": {
+    "coordinates": [50.716667, 23.252778]
+  },
+  "Hrubieszow": {
+    "coordinates": [50.816667, 23.883333]
+  },
+  "Luck": {
+    "coordinates": [50.75, 25.335833]
+  },
+  "Chitomir": {
+    "coordinates": [50.25, 28.666667]
+  },
+  "Dnjepropetrowsk": {
+    "coordinates": [48.45, 34.983333]
+  },
+  "Krementschuk": {
+    "coordinates": [49.066667, 33.416667]
+  },
+  "Mariapohl": {
+    "coordinates": [47.095833, 37.549444]
+  },
+  "Taganrog": {
+    "coordinates": [47.216667, 38.916667]
+  },
+  "Kamennyj Brod": {
+    "coordinates": [47.436871, 39.849167]
+  },
+  "Pokrowskoje": {
+    "coordinates": [47.415287, 38.901879]
+  },
+  "Ponomarew": {
+    "coordinates": [47.444879, 38.648819]
+  },
+  "Neklimowka": {
+    "coordinates": [47.413392, 38.867658]
+  },
+  "Starußja Latka": {
+    "coordinates": [47.553223, 37.984971]
+  },
+  "Trotzkoje": {
+    "coordinates": [47.357781, 38.905678]
+  },
+  "Rostow Flughafen": {
+    "coordinates": [47.275502, 39.636612]
+  },
+  "Bataisk": {
+    "coordinates": [47.166667, 39.733333]
+  },
+  "Armawir": {
+    "coordinates": [45, 41.116667]
+  },
+  "Kurbanaja": {
+    "coordinates": [44.863194, 40.576078]
+  },
+  "Labanskaja": {
+    "coordinates": [44.648395, 40.701345]
+  },
+  "Maikop": {
+    "coordinates": [44.6, 40.083333]
+  },
+  "Woroschilowsk": {
+    "coordinates": [45.05, 41.983333]
+  },
+  "Serjewoskoje": {
+    "coordinates": [44.945361, 42.705231]
+  },
+  "Szabla": {
+    "coordinates": [44.503852, 43.246307]
+  },
+  "Mochos-Alekzandrowskoje": {
+    "coordinates": [44.42725, 43.900999]
+  },
+  "Solomenskoje": {
+    "coordinates": [44.218141, 44.347894]
+  },
+  "Edisjahr": {
+    "coordinates": [44.048232, 44.554603]
+  },
+  "Meckenskaja": {
+    "coordinates": [43.664963, 45.381386]
+  },
+  "Nikolajewskaja": {
+    "coordinates": [43.530133, 45.774358]
+  },
+  "Jerschkaja": {
+    "coordinates": [43.784012, 44.931355]
+  },
+  "Karschyga-Aul": {
+    "coordinates": [43.572245, 46.17425]
+  },
+  "Scherwenskaja": {
+    "coordinates": [43.470659, 46.104049]
+  },
+  "Mosdok": {
+    "coordinates": [43.75, 44.65]
+  },
+  "Maiski": {
+    "coordinates": [43.65, 44.066667]
+  },
+  "Sowjetskaja": {
+    "coordinates": [44.025085, 44.044672]
+  },
+  "Georgijewsk": {
+    "coordinates": [44.15, 43.466667]
+  },
+  "Pjatigorsk": {
+    "coordinates": [44.05, 43.066667]
+  },
+  "Gnadenburg": {
+    "coordinates": [43.699128, 44.479511]
+  },
+  "Prochladny": {
+    "coordinates": [43.75, 44.033333]
+  },
+  "Mineraly Wody": {
+    "coordinates": [44.216667, 43.133333]
+  },
+  "Przemisl": {
+    "coordinates": [49.786111, 22.773889]
+  },
+  "Krakau": {
+    "coordinates": [50.061389, 19.937222]
+  },
+  "Breslau": {
+    "coordinates": [51.1, 17.033333]
+  },
+  "Magdeburg": {
+    "coordinates": [52.133333, 11.616667]
+  },
+  "Völpke": {
+    "coordinates": [52.136667, 11.095]
+  },
+  "Eilsleben": {
+    "coordinates": [52.15, 11.216667]
+  },
+  "Berlin": {
+    "coordinates": [52.516667, 13.388889]
+  },
+  "Reichshof": {
+    "coordinates": [50.05, 22]
+  },
+  "Snamenka": {
+    "coordinates": [48.713611, 32.673333]
+  },
+  "Pawlowskaja": {
+    "coordinates": [46.15, 39.8]
+  },
+  "Tichorez": {
+    "coordinates": [45.866667, 40.133333]
+  },
+  "Kropotkin": {
+    "coordinates": [45.433333, 40.566667]
+  },
+  "Ardon": {
+    "coordinates": [43.166667, 44.283333]
+  },
+  "Nikolajewskaja (Kaukasus)": {
+    "coordinates": [43.214952, 44.205943]
+  },
+  "Schikola": {
+    "coordinates": [43.197167, 43.923683]
+  },
+  "Uruch": {
+    "coordinates": [43.300697, 44.030972]
+  },
+  "Lesken II": {
+    "coordinates": [43.275456, 43.825836]
+  },
+  "Terek": {
+    "coordinates": [43.483333, 44.133333]
+  },
+  "Naltschik": {
+    "coordinates": [43.483333, 43.616667]
+  },
+  "Rostow": {
+    "coordinates": [47.233333, 39.716667]
+  },
+  "Schweidnitz": {
+    "coordinates": [50.85, 16.483333]
+  },
+  "Brünn": {
+    "coordinates": [49.2, 16.616667]
+  },
+  "Wien": {
+    "coordinates": [48.208333, 16.373056]
+  },
+  "Stry": {
+    "coordinates": [49.25, 23.85]
+  },
+  "Munkacz": {
+    "coordinates": [48.45, 22.75]
+  },
+  "Des": {
+    "coordinates": [47.137769, 23.873915]
+  },
+  "Neumarkt": {
+    "coordinates": [46.533333, 24.566667]
+  },
+  "Palanka": {
+    "coordinates": [46.533333, 26.116667]
+  },
+  "Maraschesti": {
+    "coordinates": [45.88, 27.23]
+  },
+  "Tecuci": {
+    "coordinates": [45.850278, 27.434167]
+  },
+  "Barlad": {
+    "coordinates": [46.216667, 27.666667]
+  },
+  "Romanesti": {
+    "coordinates": [46.326542, 28.959961]
+  },
+  "Kischinew": {
+    "coordinates": [47.022887, 28.835335]
+  },
+  "Floreni": {
+    "coordinates": [46.933333, 28.983333]
+  },
+  "Chirka": {
+    "coordinates": [46.921193, 29.11377]
+  },
+  "Braila": {
+    "coordinates": [46.911615, 28.839135]
+  },
+  "Bolgrad": {
+    "coordinates": [45.736599, 28.599948]
+  },
+  "Galatz": {
+    "coordinates": [45.435228, 28.053496]
+  },
+  "Braila (Rumänien)": {
+    "coordinates": [45.265942, 27.959591]
+  },
+  "Slobozia": {
+    "coordinates": [44.558169, 27.36646]
+  },
+  "Braila (Rumänien)": {
+    "coordinates": [45.265942, 27.959591]
+  },
+  "Popina": {
+    "coordinates": [44.118895, 26.951008]
+  },
+  "Raßgrad": {
+    "coordinates": [43.527231, 26.524791]
+  },
+  "Ismail": {
+    "coordinates": [45.352145, 28.83688]
+  },
+  "Odessa": {
+    "coordinates": [46.485722, 30.743444]
+  },
+  "Kasan": {
+    "coordinates": [55.783333, 49.116667]
+  },
+  "Fürstenwalde": {
+    "coordinates": [52.366667, 14.066667]
+  }
+}
