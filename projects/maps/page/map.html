@@ -12,16 +12,25 @@
         <script src="libs/leaflet-measure-path.js" type="text/javascript"></script>
         <script src="libs/leaflet.contextmenu.min.js" type="text/javascript"></script>
         <script src="libs/leaflet-sidebar.min.js" type="text/javascript"></script>
+        <script src="libs/leaflet-svg-shape-markers.min.js"></script>
         <script src="libs/spin.js" type="text/javascript"></script>
         <script src="libs/leaflet.spin.js" type="text/javascript"></script>
         <script src="libs/leaflet-ruler.js" type="text/javascript"></script>
         <script src="libs/proj4.js" type="text/javascript"></script>
         <script src="libs/Leaflet.MetricGrid.js" type="text/javascript"></script>
         <script src="libs/leaflet-shades.js" type="text/javascript"></script>
+        <script src="libs/leaflet.markercluster-src.js"></script>
+        <script src="libs/Control.Geocoder.js"></script>
         <script src="frontline.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="persons.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="location.module.js" type="text/javascript" charset="UTF-8"></script>
+        <script src="events.module.js" type="text/javascript" charset="UTF-8"></script>
         <script src="utils.js" type="text/javascript" charset="UTF-8"></script>
+        <script src="libs/cyrillic-to-translit.js" type="text/javascript" charset="UTF-8"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
         <link href="libs/leaflet/leaflet.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link href="libs/lightpick.css" rel="stylesheet">
@@ -32,6 +41,9 @@
         <link href="libs/leaflet-ruler.css" rel="stylesheet">
         <link href="libs/leaflet-sidebar.min.css" rel="stylesheet">
         <link href="libs/leaflet-shades.css" rel="stylesheet">
+        <link href="libs/MarkerCluster.css" rel="stylesheet">
+        <link href="libs/MarkerCluster.Default.css" rel="stylesheet">
+        <link href="libs/Control.Geocoder.css" rel="stylesheet">
         <style>
             body {
                 padding: 0;
@@ -58,7 +70,7 @@
                 margin-right: 8px;
                 opacity: 1.0;
             }
-            
+
             .timebutton {
                 font-size:15px;
             }
@@ -121,9 +133,17 @@
             <input type="text" id="loc-name" style="display: block; margin: 0 auto;">
 
             <p>The name will be compared to all location names in the database using the <a href="https://en.wikipedia.org/wiki/Edit_distance">Edit Distance</a>. If the edit distance between the two is small than a certain threshhold it will be included in the results.<br><br> Maximum edit distance:</p>
-            <input type="text" id="max-distance" style="display: block; margin: 0 auto;" value="4">
+            <input type="number" id="max-distance" style="display: block; margin: 0 auto;" value="-1">
 
             <br>
+
+            <input type="checkbox" id="search_use_historic" checked> Use Historic Maps<br>
+            <input type="checkbox" id="search_use_osm" checked> Use OSM<br>
+            OSM Query <input type="text" id="search_osm_query" style="display: block; margin: 0 auto;" value="place"><br>
+
+            <br>
+
+            <input type="checkbox" id="search_show_labels" checked> Show Labels<br>
 
             <button class="btn" onclick="searchLocations()" style="display: block; margin: 0 auto;">Search</button>
 
@@ -136,6 +156,16 @@
             <button class="btn" onclick="hideSelectedArea()" style="display: block; margin: 0 auto;">Delete</button>
         </div>
 
+        <div id="events-content">
+            <p>Select the type of events you would like to see:</p>
+            <div id="events-checkbox-group">
+
+            </div>
+            <hr>
+            <p>Show static labels on the map: <input type="checkbox" id="ckb_events_labels" onclick="events_refresh();" checked></p>
+            <p>Grace period of how many days before and after events are shown: <input type="number" min="0" max="99999" id="events_grace_period" style="display: block; margin: 0 auto;" value="3" onclick="events_refresh();"></p>
+        </div>
+
         <div id="sidebar" class="leaflet-sidebar collapsed">
             <!-- nav tabs -->
             <div class="leaflet-sidebar-tabs">
@@ -144,6 +174,7 @@
                     <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
                     <li><a href="#text-search" role="tab"><i class="fa fa-search"></i></a></li>
                     <li><a href="#historic-map" role="tab"><i class="fa fa-map"></i></a></li>
+                    <li><a href="#events" role="tab"><i class="fas fa-exclamation-circle"></i></a></li>
                 </ul>
             </div>
 
@@ -192,6 +223,26 @@
 
                     <button class="btn" onclick="loadHistoricMaps()" style="display: block; margin: 0 auto;">Load</button>
                 </div>
+
+                <div class="leaflet-sidebar-pane" id="events">
+                    <h1 class="leaflet-sidebar-header">
+                        Events
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+
+                    <div id="events-element">
+                        <p>Please wait while the necessary data is loading</p>
+
+                        <br>
+
+                        <div id="events-element-spinner">
+                            <div id="loadingcont">
+                                <p id="loadingspinr">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -200,6 +251,9 @@
             var year_colors = ['#ffe119', '#3cb44b', '#e6194B', '#4363d8', '#f58231', '#469990', '#f032e6', '#fabebe'];
             var person_colors = ["green", "blue", "violet", "orange", "black"];
             var historic_map_key = "historic-map-url";
+
+            var event_tag_colors = ['#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000'];
+            var event_tags = null;
 
             var picker = null;
             var map = null;
@@ -213,21 +267,24 @@
             var circle_group = null;
             var person_control = null;
             var rect = null;
+            var search_results_layer = null;
             var shades = null;
+            var events_group = null;
 
             var person_data = {};
             var frontline_data = [];
             var location_data = null;
+            var events_data = null;
 
             function getPersonColor(idx) {
                 return person_colors[idx % person_colors.length];
             }
-            
+
             function getYearColor(year) {
                 year = Math.min(year, base_year + year_colors.length - 1);
                 return year_colors[year - base_year];
             }
-            
+
             function get_dash(annotations) {
                 var dashes = null;
                 if(annotations.includes("k"))
@@ -242,21 +299,21 @@
                     dashes = "20, 30";
                 return dashes;
             }
-            
+
             function add_transition(latlng1, latlng2, date1, date2, colorf, annotations, group) {
                 var opacity_line = 1.0;
                 if(annotations.includes("?") || annotations.includes("o") || annotations.includes("z"))
                     opacity_line = 0.65;
-            
+
                 var dashes = get_dash(annotations);
-                    
+
                 var line = L.polyline([latlng1, latlng2], {
                     color: colorf,
                     opacity: opacity_line,
                     dashArray: dashes,
                     showMeasurements: true,
                 }).addTo(group);
-            
+
                 line.formatDistance = function(d) {
                     var unit, distance_text;
                     if (d > 1000) {
@@ -265,17 +322,17 @@
                     } else {
                         unit = 'm';
                     }
-            
+
                     if (d < 100) {
                         distance_text = d.toFixed(1) + ' ' + unit;
                     } else {
                         distance_text = Math.round(d) + ' ' + unit;
                     }
-                    
+
                     var f = 'D.MMM';
                     return moment(date1).format(f) + " - " + distance_text + " - " + moment(date2).format(f);
                 }
-                
+
                 var arrowHead = L.polylineDecorator(line, {
                     patterns: [
                         {
@@ -290,24 +347,24 @@
                     ]
                 }).addTo(group);
             }
-            
-            function plot(date_start, date_end) {    
+
+            function plot(date_start, date_end) {
                 var person_idx = 0;
                 for (var person_name in person_data) {
                     var places = person_data[person_name].places;
                     var route = person_data[person_name].route;
-                    
+
                     var transitions_group = new L.featureGroup();
                     var places_group = new L.featureGroup();
-                    
+
                     var used_places = new Set();
-                    
+
                     for (var idx = 0; idx < route.length - 1; idx++) {
                         var place1 = route[idx + 0].place;
                         var place2 = route[idx + 1].place;
                         var date1 = new moment(route[idx + 0].date, 'DD.MM.YYYY');
                         var date2 = new moment(route[idx + 1].date, 'DD.MM.YYYY');
-                        
+
                         if(new moment(date_end).isSameOrAfter(date1, 'day') && date2.isSameOrAfter(new moment(date_start), 'day')) {
                             var color = getYearColor(new Date(date1).getFullYear());
                             var coords1 = places[place1].coordinates;
@@ -316,12 +373,12 @@
                             if("annotations" in route[idx + 1])
                                 annotations = route[idx + 1].annotations
                             add_transition(coords1, coords2, date1, date2, color, annotations, transitions_group);
-                            
+
                             used_places.add(place1);
                             used_places.add(place2);
                         }
                     }
-                    
+
                     var person_icon = new L.Icon({
                         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' + getPersonColor(person_idx) + '.png',
                         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -330,7 +387,7 @@
                         popupAnchor: [1, -34],
                         shadowSize: [41, 41]
                     });
-                    
+
                     for (let  place_name of used_places) {
                         var latlng = places[place_name].coordinates;
                         if(latlng.length != 2)
@@ -342,15 +399,15 @@
                             }).addTo(places_group).bindPopup(place_name);
                         }
                     }
-                    
+
                     person_group = person_groups[person_name];
                     person_group.clearLayers();
                     places_group.addTo(person_group);
                     transitions_group.addTo(person_group);
-                    
+
                     person_idx = person_idx + 1;
                 }
-                
+
                 frontline_group.clearLayers();
                 frontline_label_group.clearLayers();
                 frontline_group.addLayer(frontline_label_group);
@@ -360,7 +417,7 @@
                 for(let front_name of front_names) {
                     let tagged_charts_start = frontline_data.reduce((total, v) => closest_front(total, v, date_start, front_name, 'before'), null);
                     let tagged_charts_end = frontline_data.reduce((total, v) => closest_front(total, v, date_end, front_name, 'before'), null);
-                    
+
                     //they can be the same ones => don' draw them twice
                     var sq = [];
                     if(tagged_charts_start != null)
@@ -398,6 +455,143 @@
                         }).addTo(frontline_label_group);
                     }
                 }
+
+                //plot events but first determine what types are shown
+                var event_types_displayed = null;
+                var group_div = document.getElementById("events-checkbox-group");
+                if(group_div != null) {
+                    event_types_displayed = {};
+                    for(const ckb_div of group_div.children) {
+                        event_types_displayed[ckb_div.children[0].name] = ckb_div.children[0].checked;
+                    }
+                }
+
+                //now plot actual events
+                var node = document.getElementById("ckb_events_labels");
+                var show_static_labels = node != null ? node.checked : false;
+                node = document.getElementById("events_grace_period");
+                var grace_period = node != null ? node.value : 0;
+                events_group.clearLayers();
+                for(const event of events_data.events) {
+                    //check that date is in interval
+                    if(isString(event.date)) {
+                        if(!check_dates_intersection(event.date, event.date, date_start, date_end, grace_period))
+                            continue;
+                    }
+                    else if(isArray(event.date)) {
+                        var display = false;
+                        for(const el of event.date) {
+                            if(isString(el))
+                                display |= check_dates_intersection(el, el, date_start, date_end, grace_period);
+                            else display |= check_dates_intersection(el[0], el[1], date_start, date_end, grace_period);
+                        }
+                        if(!display)
+                            continue;
+                    }
+                    else console.log("invalid date: " + event.date);
+
+                    //check that one of the types is displayed
+                    var display = false;
+                    for(const tag of event.tags) {
+                        display |= event_types_displayed[tag] == true;
+                    }
+                    if(!display)
+                        continue;
+
+                    var popup = create_event_popup(event);
+                    var elements = [];
+                    var markers = L.markerClusterGroup();
+                    var color = event.tags != null && event.tags.length > 0 ? event_tag_colors[event_tags.indexOf(event.tags[0])] : "gray";
+                    if(event.location != null) {
+                        var locations = isArray(event.location[0]) ? event.location : [event.location];
+                        for(const location of locations) {
+                            var marker = L.shapeMarker(location, {
+                                fillColor: color,
+                                color: color,
+                                shape: "triangle-up"
+                            }).addTo(markers);
+                            marker.bindPopup(popup);
+                            elements.push(marker);
+                        }
+                    }
+                    if(event.area != null) {
+                        var polygon = L.polygon(event.area).addTo(markers);
+                        polygon.bindPopup(popup);
+                        elements.push(polygon);
+                    }
+                    if(show_static_labels) {
+                        for(var el of elements) {
+                            el.bindTooltip(event.title,
+                                {
+                                    permanent: true,
+                                    direction: 'right'
+                                }
+                            )
+                        }
+                    }
+                    markers.addTo(events_group);
+                }
+            }
+
+            function check_dates_intersection(date1, date2, start_date, end_date, grace_period) {
+                //x1 <= y2 && y1 <= x2
+                var a = new moment(date1, 'DD.MM.YYYY'), b = new moment(date2, 'DD.MM.YYYY');
+                var c = new moment(start_date).subtract(grace_period, 'day'), d = new moment(end_date).add(grace_period, 'day');
+                return d.isSameOrAfter(a, 'day') && b.isSameOrAfter(c, 'day');
+            }
+
+            function format_source(source_key) {
+                var extra = null;
+                if(source_key.indexOf('-')) {
+                    var ps = source_key.split('-');
+                    source_key = ps[0];
+                    extra = ps[1];
+                }
+
+                var source = events_data.sources[source_key];
+                if(source.type == 'book') {
+                    var add_info = extra != null ? 'Page ' + extra : '';
+                    return `${source.authors} (${source.year}) <cite>${source.title}</cite>, ${source.publisher} -- ${add_info}`;
+                }
+                else if(source.type == 'web') {
+                    var url = source.url + extra;
+                    return `<cite><a href="${url}"><i>${source.title}</i></a></cite>`;
+                }
+                else console.log("invalid source: " + source);
+            }
+
+            function create_event_popup(event) {
+                var tags_html = "";
+                for(const tag of event.tags) {
+                    tags_html += '<font color="' + event_tag_colors[event_tags.indexOf(tag)] + '">' + tag + '</font>';
+                }
+                var date_html = "";
+                if(isString(event.date)) {
+                    date_html = event.date;
+                }
+                else if(isArray(event.date)) {
+                    date_html = event.date.map(x => {
+                        if(isString(x))
+                            return x;
+                        else return x[0] + " - " + x[1];
+                    }).join(', ');
+                }
+                else console.log("invalid date: " + event.date);
+                var sources_html = event.source != null ? format_source(event.source) : "";
+                var description_html = event.description != null ? `<p>${event.description}</p><hr>` : "";
+                var quote_html = event.quote != null ? `<blockquote>${event.quote}</blockquote><hr>` : "";
+                return `
+                    <div>
+                        <h2>${event.title}</h2>
+                        ${date_html}
+                        <hr>
+                        ${description_html}
+                        ${quote_html}
+                        ${sources_html}
+                        <hr>
+                        Tags: ${tags_html}
+                    </div>
+                `;
             }
 
             function selectPersons(persons, start_date, end_date) {
@@ -407,7 +601,7 @@
                     person_group.addTo(map);
                     person_groups[person_name] = person_group;
                 }
-                
+
                 plot(start_date, end_date);
 
                 person_groups_html = [];
@@ -431,7 +625,7 @@
 
                 historic_map_group = new L.featureGroup();
                 base_layers["Übersichtskarten 1:300.000"] = historic_map_group;
-    
+
                 var historicTiles = L.tileLayer(historic_map_url + '/{z}/{x}/{y}.png', {
                     minZoom: 0, maxZoom: 14,
                     maxNativeZoom: 12
@@ -464,7 +658,7 @@
                                 cName = 'processed';
                             if(!is_processed && is_available)
                                 cName = 'available';
-                    
+
                             var myTextLabel = L.marker(loc_center, {
                                 icon: L.divIcon({
                                     className: 'maptile-label-'+cName,
@@ -513,8 +707,8 @@
                 toggleZoomHistoric(true);
             }
 
-            //the DHG = Deutsche Heeres Gitter is very similar to UTM but only differes in scale factor and ellipsoid
-            //I am still using the WGS84 datum here instead of Potsdam because I loaded the maps incorrectly            
+            //the DHG = Deutsche Heeres Gitter is very similar to UTM but only differs in scale factor and ellipsoid
+            //I am still using the WGS84 datum here instead of Potsdam because I loaded the maps incorrectly
             //https://global-geography.org/attach/Geography/Cross-country_information/Buchroithner.pdf
             //http://www.gpsforum.geospector.de/phpbb/viewtopic.php?f=6&t=1513
             //http://osgeo-org.1560.x6.nabble.com/System-42-83-S42-83-td3850558.html
@@ -538,13 +732,34 @@
                     layer.addLayer(zone_grid);
                 }
             }
-                
+
             window.onload=function(){
-                var osm_layer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+                var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
                     maxZoom: 18,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 });
-                base_layers["OSM"] = osm_layer;
-            
+                base_layers["OpenStreetMap DE"] = OpenStreetMap_DE;
+                var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 17,
+                    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+                });
+                base_layers["OpenTopoMap"] = OpenTopoMap;
+                var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+                });
+                base_layers["Esri WorldTopoMap"] = Esri_WorldTopoMap;
+                var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                });
+                base_layers["CartoDB Voyager"] = CartoDB_Voyager;
+                var OpenRailwayMap = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+                });
+                optional_layers["OpenRailwayMap"] = OpenRailwayMap;
+
                 map = L.map('map', {
                     editable: true,
                     zoomControl: false,
@@ -561,7 +776,7 @@
                         text: 'Remove All Circles',
                         callback: removeCircles
                     }]
-                }).addLayer(osm_layer);
+                }).addLayer(OpenStreetMap_DE);
 
                 var sidebar = L.control.sidebar({
                     autopan: false,       // whether to maintain the centered map point when opening the sidebar
@@ -569,14 +784,14 @@
                     container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
                     position: 'left',     // left or right
                 }).addTo(map);
-                
+
                 map.setView([50.666667, 17.933333], 4);
 
                 map.spin(true);
-                
+
                 circle_group = new L.featureGroup();
                 circle_group.addTo(map);
-            
+
                 frontline_group = new L.featureGroup();
                 frontline_group.addTo(map);
                 frontline_label_group = new L.featureGroup();
@@ -586,20 +801,20 @@
                 var dhg_group = new L.featureGroup();
                 createDHG(dhg_group);
                 optional_layers["Deutsches Heeres Gitter"] = dhg_group;
-                
+
                 var legend = L.control({position: 'topright'});
                 legend.onAdd = function(map) {
                     var div = L.DomUtil.create('div', 'info legend');
                     var labels = [];
-                    
+
                     /* years */
                     labels.push('<strong>Years</strong>');
                     for (var i = 0; i < year_colors.length; i++) {
                         labels.push('<i style="background:' + year_colors[i] + '"></i> ' + (base_year + i));
                     }
-                    
+
                     labels.push('<br>');
-                    
+
                     /* dashes */
                     var transits = [["k", "Kämpfend"], ["v", "Verletzt"], ["f", "Fliehend"], ["u", "Urlaub"], ["t", "Transit"]];
                     labels.push('<strong>Transits</strong>');
@@ -608,7 +823,7 @@
                                 + get_dash(transits[i][0]) + '" d="M0 7 L35 7"></path></g> </svg>' + transits[i][1];
                         labels.push(q);
                     }
-                    
+
                     div.innerHTML = labels.join('<br>');
                     return div;
                 };
@@ -616,13 +831,13 @@
 
                 var start_date = new Date(window.localStorage.getItem("start-date") || "1939-01-01");
                 var end_date = new Date(window.localStorage.getItem("end-date") || "1950-01-01");
-                
+
                 var timeselector = L.control({position: 'topleft'});
-                timeselector.onAdd = function(map) {        
+                timeselector.onAdd = function(map) {
                     return document.getElementById("date-element");
                 };
                 timeselector.addTo(map);
-                
+
                 picker = new Lightpick({
                     field: document.getElementById('pick1'),
                     secondField: document.getElementById('pick2'),
@@ -636,7 +851,7 @@
                         window.localStorage.setItem("end-date", picker.getEndDate().toDate().toISOString());
                     }
                 });
-                
+
                 var osm2 = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {minZoom: 0, maxZoom: 13, attribution: "" });
                 var miniMap = new L.Control.MiniMap(osm2, {
                     centerFixed: [50.666667, 17.933333],
@@ -644,13 +859,17 @@
                     width: 250,
                     autoToggleDisplay: true,
                 }).addTo(map);
-                
+
+                L.Control.geocoder({position: "bottomright"}).addTo(map);
+
                 map.on('zoomend', toggleLabelsZoom);
                 toggleLabelsZoom();
+                map.doubleClickZoom.disable();
 
                 person_data = load_person_data();
                 frontline_data = load_frontline_data();
                 location_data = load_location_data();
+                events_data = load_event_data();
 
                 Promise.all([person_data, frontline_data]).then((qqq) => {
                     selectPersons(Object.keys(person_data), start_date, end_date);
@@ -683,7 +902,6 @@
                     L.control.layers(base_layers, optional_layers, {position: 'bottomleft', collapsed:false}).addTo(map);
 
                     L.control.ruler({position: 'bottomleft'}).addTo(map);
-                    map.doubleClickZoom.disable();
                 });
 
                 var target = document.getElementById('search-element-spinner');
@@ -709,6 +927,38 @@
                     document.getElementById("search-element").innerHTML = "";
                     document.getElementById("search-element").appendChild(document.getElementById("search-content"));
                 });
+
+                events_group = new L.featureGroup();
+                events_group.addTo(map);
+                optional_layers["Events"] = events_group;
+                var target = document.getElementById('events-element-spinner');
+                var spinner = new Spinner(opts).spin(target);
+                events_data.then((q) => {
+                    events_data = q;
+                    spinner.stop();
+                    document.getElementById("events-element").innerHTML = "";
+                    document.getElementById("events-element").appendChild(document.getElementById("events-content"));
+
+                    //get all tags
+                    var tags = new Set([]);
+                    for(const ev of events_data.events) {
+                        for(const tag of ev.tags)
+                            tags.add(tag);
+                    }
+                    event_tags = Array.from(tags);
+
+                    var group_div = document.getElementById("events-checkbox-group");
+                    for(const tag of tags) {
+                        var div = document.createElement('div');
+                        var color = event_tag_colors[event_tags.indexOf(tag)];
+                        div.innerHTML = '<input type="checkbox" name="' + tag + '" onclick="events_refresh();" checked> <label style="color:' + color + ';" for="' + tag + '">' + tag + '</label> <br>';
+                        group_div.appendChild(div);
+                    }
+                });
+            }
+
+            function events_refresh() {
+                plot(picker.getStartDate().toDate(), picker.getEndDate().toDate());
             }
 
             function startSelectArea() {
@@ -719,35 +969,47 @@
                 shades.addTo(map);
             }
 
-            function searchLocations() {
+            async function searchLocations() {
                 var bbox = null;
                 if(rect != null) {
                     bbox = rect.getBounds();
                 }
                 var text = document.getElementById("loc-name").value;
                 var max_distance = document.getElementById("max-distance").value;
-                var search_res = search_locations(location_data, bbox, text, max_distance);
+                var use_historic = document.getElementById("search_use_historic").checked;
+                var use_osm = document.getElementById("search_use_osm").checked;
+                var osm_query_string = document.getElementById("search_osm_query").value;
+                var search_res = await search_locations(location_data, bbox, text, max_distance, use_historic, use_osm, osm_query_string);
+                if(search_results_layer != null)
+                    map.removeLayer(search_results_layer);
+                search_results_layer = new L.featureGroup();
+                search_results_layer.addTo(map);
+                var show_labels = document.getElementById("search_show_labels").checked;
                 document.getElementById('search-results').innerHTML = 'Search Results:';
                 for (var i = 0; i < search_res.length; i++) {
                     var location_name = search_res[i].name;
-                    var location_box = search_res[i].box;
+                    var location_center = search_res[i].center;
                     var htmlObject = document.createElement('div');
                     htmlObject.innerHTML = '<li onclick="jumpTo(this)">' + location_name + '</li>';
-                    htmlObject.box = location_box;
+                    htmlObject.center = location_center;
                     document.getElementById('search-results').appendChild(htmlObject);
+                    if(show_labels) {
+                        var marker = L.marker(location_center, {
+                            title: location_name//,
+                            //icon: person_icon
+                        }).addTo(search_results_layer).bindPopup(location_name, {closeOnClick: false, autoClose: false}).openPopup();
+                    }
                 }
             }
 
             function jumpTo(e) {
-                var location_box = e.parentNode.box;
-                location_box = L.latLngBounds(L.latLng(location_box[0]), L.latLng(location_box[1]));
-                map.setView(location_box.getCenter(), 13)
+                map.setView(L.latLng(e.parentNode.center), 13);
             }
 
             function loadHistoricMaps() {
                 var url = document.getElementById("historic-map-url-input").value;
                 window.localStorage.setItem(historic_map_key, url);
-                window.location.reload(false); 
+                window.location.reload(false);
             }
 
             function hideSelectedArea() {
@@ -755,12 +1017,14 @@
                 map.removeLayer(rect);
                 rect = null;
                 document.getElementById('search-results').innerHTML = "";
+                map.removeLayer(search_results_layer);
+                search_results_layer = null;
             }
-            
+
             function showCoordinates(e) {
                 alert(e.latlng);
             }
-            
+
             function addCircle(e) {
                 var distance_km = prompt("Radius in km", 1.0);
                 if (distance_km != null) {
@@ -788,57 +1052,57 @@
                     }).addTo(circle_group);
                 }
             }
-            
+
             function removeCircles(e) {
                 circle_group.clearLayers();
             }
-            
+
             function removeCircle(e, circle, centerMarker) {
                 circle_group.removeLayer(circle);
                 circle_group.removeLayer(centerMarker);
-                
+
             }
-            
+
             function changeRadius(e, circle) {
                 var distance_km = prompt("Radius in km", circle.getRadius() / 1000);
                 if (distance_km != null) {
                     circle.setRadius(distance_km * 1000);
                 }
             }
-            
+
             function toggleLabelsZoom() {
                 if (map.getZoom() < 4){
                     frontline_group.removeLayer(frontline_label_group);
                 }
                 else frontline_group.addLayer(frontline_label_group);
             }
-            
+
             function btn_link(btn) {
                 btn.children[0].className = btn.children[0].className == "fa fa-unlink" ? "fa fa-link" : "fa fa-unlink";
             }
-            
+
             function btn_change_date(event, idx_date, delta, ty) {
                 if (event.ctrlKey)
                     ty = ty == "days" ? "weeks" : "years";
-            
+
                 var start = picker.getStartDate().clone();
                 var end = picker.getEndDate().clone();
                 var linked = document.getElementById("btn_link").children[0].className == "fa fa-link";
-            
+
                 if(linked || idx_date == 0)
                     start.add(delta, ty);
-            
+
                 if(linked || idx_date == 1)
                     end.add(delta, ty);
-            
+
                 picker.setDateRange(start, end);
             }
-            
+
             function btn_right() {
                 var start = picker.getStartDate().clone();
                 picker.setDateRange(start, start);
             }
-            
+
             function btn_left() {
                 var end = picker.getEndDate().clone();
                 picker.setDateRange(end, end);

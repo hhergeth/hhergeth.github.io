@@ -2,16 +2,18 @@
 <script> window.markdeepOptions={}; window.markdeepOptions.tocStyle = "none"; </script>
 
     **Interactive World War 2 Map**
-    
+
 !!! WARNING
     The author of this page does not condone the denial of any Nazi crimes nor the glorification of any aspect of the third Reich.
-    
+
 <p style="text-align: center;">[There is also a full screen version](map.html)</p>
 
 <iframe frameborder="0" style="width: 100%; height: 500px;" src="map.html" name="map">You need a Frames Capable browser to view this content.</iframe>
 
 !!! Tip
     The data and information shown here is not accurate and only useful for visualization purposes.
+
+    Consider reading "*War Stories: Narrative Sense-Making in German Eastern Front Soldier Memoirs*" by *Sneddon* and *Gulddal* to read the memoirs listed below more carefully.
 
 # General Information
 
@@ -56,11 +58,11 @@ The methods described below are implemented in python using OpenCV (the code can
 
 #### Early War
 
-For the early war maps I manually created contours for the timestamps available. Given the discussions on Wikipedia the accuracy of these maps has to be questioned. There is also the peculiarity that the last map for early 1943 does not show the recapture of Charkow after the _Third Battle of Kharkov_ (which is why I have left out this timestamp). 
+For the early war maps I manually created contours for the timestamps available. Given the discussions on Wikipedia the accuracy of these maps has to be questioned. There is also the peculiarity that the last map for early 1943 does not show the recapture of Charkow after the _Third Battle of Kharkov_ (which is why I have left out this timestamp).
 
 Assigning latitude-longitude information to each pixel in the image (called unprojecting from now on) is difficult here because the projection method isn't specified. For all cities shown on the map I looked up the coordinates to create a list of known $[pixel, coordinate]$ pairs. I used _scipys_ _griddata_ method to interpolate this sparse data onto a grid. I then used the _interpn_ method to inter/extra-polate coordinates for all pixel values (possibly outside of the bounds of the sparse known data). As a fallback I also employed a _Lasso_ regressor from _scikit-learn_ trained on the known locations.
 
-The results are acceptable for purely visualization purposes but significantly lack quality in the extreme regions like the Caucasus or Caspian Sea (with errors of up to $1°$ in latitude/longitude). 
+The results are acceptable for purely visualization purposes but significantly lack quality in the extreme regions like the Caucasus or Caspian Sea (with errors of up to $1°$ in latitude/longitude).
 
 #### Late War
 
@@ -153,7 +155,7 @@ The format of the json data is an array of _objects_ which are just a bounding b
 # Biographical Data
 
 The biographical data is mostly taken from books, written by participants of the war. These books differ wildly in the accuracy of which they give dates and locations. I always used the location names given in the source and not the modern one (which can be easily determined).
-            
+
 Most of the time I was able to match the locations with high certainty. But in general there is a degree of unknown here, for example: Hans Jürgen Hartmann gives "Kurenye" as the location of his unit near the Don in August 1942. The closest match I could find on Openstreet Map is [Куренное](https://ru.wikipedia.org/wiki/%D0%9A%D1%83%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5) which is a reasonable assumption given the [context](http://www.294id.de/infanterieregiment-514.html) but could very well be incorrect.
 
 All authors often, and for good reasons, skipped  many stops on their long distance transport routes. This created difficult to read visualizations because of crossing and overlapping lines. Due to this reason I invented fake intermittent stops on their train journeys. These are always reasonable in that they are towns on the railway lines between the start and end of their journeys. But I of course do not know which exact route they took in the many possible alternatives. To make this clear I have slightly faded out these segments on the map.
@@ -181,7 +183,7 @@ The second file contains the actual route the person took.
 ~~~~
 [
     {
-		"date": "18.07.1942",
+        "date": "18.07.1942",
 		"place": "Chemnitz",
 		"annotations": "..."
     },
@@ -235,7 +237,7 @@ The user _B Hellqvist_ has created an excellent analysis of the problems [here](
 
 ## Hans von Luck
 
-In general the author mentions enough dates to reconstruct an accurate timeline. Exceptions include the advance towards Moscow in 1941, the drive to Berlin in early 1942 and the retreat from the Siwa Oasis in 1942 to Tunis. 
+In general the author mentions enough dates to reconstruct an accurate timeline. Exceptions include the advance towards Moscow in 1941, the drive to Berlin in early 1942 and the retreat from the Siwa Oasis in 1942 to Tunis.
 
 !!!
     Luck, Hans Von. Mit Rommel an Der Front. Weltbild, 2010.
@@ -269,6 +271,50 @@ The biggest problem reconstructing the route was the use of location names which
 * Hausbruch in east Prussia could not be found.
 
 !!!
-    Albert, Albert. Heimatschuss: Tagebuch des jungen Infanteriesoldaten Albert Kolz. Matthias Ess, 2016.
+    Kolz, Albert. Heimatschuss: Tagebuch des jungen Infanteriesoldaten Albert Kolz. Matthias Ess, 2016.
+
+## Willi Kubik
+
+It was often difficult to recreate an accurate route, the quality of the placements is low and sometimes guesses were made.
+
+!!!
+    Kubik, Willi. ZEITGESCHICHTE - Erinnerungen eines Panzerschützen 1941 - 1945 - Tagebuchaufzeichnung eines Panzerschützen der Pz. Aufkl. Abt.13 im Russlandfeldzug 1941 - 1945. Verlagshaus Würzburg - Flechsig, 2005.
+
+# Events
+
+The events displayed were taken from books or other sources on the internet. I roughly translated german text but please do not quote this, it doesn't live up to detailed inspection.
+
+## Format
+
+The json data is located in a single file _events.json_ which contains a section for the actual events, containing the following entries:
+
+~~~~
+{
+    "date": "21.08.1942", //this is either a direct date or a list of type: [[start date, end date], [date], ...]
+    "location": [48.943249, 43.79734], //this is either a lat lng coordinate tuple or a list of coordinates
+    "area": [[48.943249, 43.79734], ...], //can be used to mark an area, this is a list of coordinates forming a polygon
+    "title": "Crossing of the Don",
+    "source": "ab2010-129", //a string which contains either one or two parts separated by a dash. The first part is always a reference into the sources dictionary. The second part can either be a book page or a part of a url (this will be appended to the site url)
+    "description": "Infantry companies of LI. Corps crossed the Don and created a bridgehead close to the village of Lutschinskoi [sic]. A battalion crossed at Wertjatschi.",
+    "tags": ["detail", ...]
+}
+~~~~
+
+Furthermore references are stored like this:
+
+~~~~
+"key" : {
+    "type": "book", //book or web
+    "title": "Stalingrad",
+    "authors": "Antony Beevor", //list of all authors
+    "publisher": "Pantheon",
+    "year": "2010"
+}
+"key" : {
+    "type": "web", //book or web
+    "title": "Stalingrad",
+    "url": "..."
+}
+~~~~
 
 <!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
