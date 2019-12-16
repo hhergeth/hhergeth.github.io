@@ -285,32 +285,14 @@
                 return year_colors[year - base_year];
             }
 
-            function get_dash(annotations) {
-                var dashes = null;
-                if(annotations.includes("k"))
-                    dashes = "1, 0";
-                if(annotations.includes("v"))
-                    dashes = "4, 24";
-                if(annotations.includes("f"))
-                    dashes = "5, 5";
-                if(annotations.includes("u"))
-                    dashes = "40, 10";
-                if(annotations.includes("t"))
-                    dashes = "20, 30";
-                return dashes;
-            }
-
             function add_transition(latlng1, latlng2, date1, date2, colorf, annotations, group) {
                 var opacity_line = 1.0;
                 if(annotations.includes("?") || annotations.includes("o") || annotations.includes("z"))
                     opacity_line = 0.65;
 
-                var dashes = get_dash(annotations);
-
                 var line = L.polyline([latlng1, latlng2], {
                     color: colorf,
                     opacity: opacity_line,
-                    dashArray: dashes,
                     showMeasurements: true,
                 }).addTo(group);
 
@@ -814,15 +796,6 @@
                     }
 
                     labels.push('<br>');
-
-                    /* dashes */
-                    var transits = [["k", "Kämpfend"], ["v", "Verletzt"], ["f", "Fliehend"], ["u", "Urlaub"], ["t", "Transit"]];
-                    labels.push('<strong>Transits</strong>');
-                    for (var i = 0; i < transits.length; i++) {
-                        var q = '<svg height="12" width="43"> <g fill="none" stroke="black" stroke-width="4"> <path stroke-dasharray="'
-                                + get_dash(transits[i][0]) + '" d="M0 7 L35 7"></path></g> </svg>' + transits[i][1];
-                        labels.push(q);
-                    }
 
                     div.innerHTML = labels.join('<br>');
                     return div;
