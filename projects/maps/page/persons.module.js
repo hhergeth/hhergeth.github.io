@@ -5,6 +5,27 @@ function validate_person_data(person_data) {
         var places = person_data[person_name].places;
         var route = person_data[person_name].route;
 
+        //convert trips to single entries
+        var simple_route = [];
+        for(var idx = 0; idx < route.length; idx++) {
+            if(route[idx].places != null) {
+                var places_trip = route[idx].places;
+                let [date1, date2] = route[idx].dates;
+                if(date2 == null)
+                    date2 = date1;
+                var total_seconds = new moment(date2, 'DD.MM.YYYY').diff(new moment(date1, 'DD.MM.YYYY'), "seconds");
+                for(var place_idx = 0; place_idx < places_trip.length; place_idx++) {
+                    var s = total_seconds * (place_idx / (places_trip.length - 1));
+                    var d = new moment(date1, 'DD.MM.YYYY').add(s, 'seconds');
+                    simple_route.push({date: d.format('DD.MM.YYYY'), place: places_trip[place_idx]});
+                }
+            }
+            else simple_route.push(route[idx]);
+        }
+        route = simple_route;
+        person_data[person_name].route = route;
+
+        //simple sanity checks
         for(var idx = 0; idx < route.length; idx++) {
             if(!(route[idx].place in places)) {
                 found_error = true;
