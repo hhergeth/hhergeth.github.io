@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Wireguard Key Generator</title>
+</head>
+
+<body>
+    <h1>Keys</h1>
+
+    <a class="btn btn-large btn-success" id="button-gen">Generate</a>
+    <div class="col-sm-10">
+        <label for="privateKey" class="col-sm-2 col-form-label" style="display: inline-block;">Private Key:</label>
+        <input type="text" readonly class="form-control-plaintext col-sm-8" style="display: inline-block;" id="privateKey" value="">
+    </div>
+    <div class="col-sm-10">
+        <label for="publicKey" class="col-sm-2 col-form-label" style="display: inline-block;">Public Key:</label>
+        <input type="text" readonly class="form-control-plaintext col-sm-8" style="display: inline-block;" id="publicKey" value="">
+    </div>
+
+    <div class="col-sm-10">
+        <label for="ipAddress" class="col-sm-2 col-form-label" style="display: inline-block;">IP Address:</label>
+        <input type="number" class="form-control-plaintext col-sm-8" style="display: inline-block;" id="ipAddress" value="" min="1" max="254">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="container bcontent">
+                    <h2>Client Config:</h2>
+                    <pre id="config-disp-client">
+                      
+                    </pre>
+                    <a class="btn btn-large btn-success" id="button-download">Download</a>
+                </div>
+
+                <div class="container bcontent">
+                    <h2>Server Config:</h2>
+                    <pre id="config-disp-server">
+                      
+                    </pre>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="client-config-qr">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-creator/dist/qr-creator.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/aes.min.js" integrity="sha512-4b1zfeOuJCy8B/suCMGNcEkMcQkQ+/jQ6HlJIaYVGvg2ZydPvdp7GY0CuRVbNpSxNVFqwTAmls2ftKSkDI9vtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (decodeURIComponent(pair[0]) == variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            console.log('Query variable %s not found', variable);
+        }
+
+        function getServerConfig() {
+            const key = 'server-config';
+            const serverDataStored = localStorage.getItem(key);
+            if (serverDataStored != null)
+                return JSON.parse(serverDataStored);
+            const serverData = prompt("Server config");
+            if (serverData == null) {
+                alert("Can't function without server config!");
+                return;
+            }
+            localStorage.setItem(key, serverData);
+            return JSON.parse(serverData);
+        }
+
+        function getConfig(serverInfos) {
+            var ip = $('#ipAddress')[0].value;
+            var privateKey = $('#privateKey')[0].value;
+            return `[Interface]
+PrivateKey = ${privateKey}
+ListenPort = 51820
+Address = 10.6.6.${ip}/32
+DNS = 10.6.8.1, 10.6.7.1
+
+[Peer]
+PublicKey = ${serverInfos.VPS.publicKey}
+AllowedIPs = 10.6.7.0/24
+Endpoint = ${serverInfos.VPS.endpoint}
+
+[Peer]
+PublicKey = ${serverInfos.HomeServer.publicKey}
+AllowedIPs = 10.6.8.0/24
+Endpoint = ${serverInfos.HomeServer.endpoint}
+`;
+        }
+
+        function populateConfigBlocks(serverInfos) {
+            var publicKey = $('#publicKey')[0].value;
+            var ip = $('#ipAddress')[0].value;
+            var clientConfig = getConfig(serverInfos);
+            $("#config-disp-client")[0].innerHTML = clientConfig;
+            $("#config-disp-server")[0].innerHTML = `[Peer]
+PublicKey = ${publicKey}
+AllowedIPs = 10.6.6.${ip}/32`;
+
+            $('#client-config-qr')[0].innerHTML = '';
+            QrCreator.render({
+                text: clientConfig,
+                radius: 0.0, // 0.0 to 0.5
+                ecLevel: 'H', // L, M, Q, H
+                fill: '#536DFE', // foreground color
+                background: null, // color or null for transparent
+                size: 400 // in pixels
+            }, document.querySelector('#client-config-qr'));
+        }
+
+        function downloadConfig(serverInfos) {
+            var configStr = getConfig(serverInfos);
+            var blob = new Blob([configStr], {
+                type: "text/plain;charset=utf-8;",
+            });
+            saveAs(blob, `wg1.config`);
+        }
+
+        function generateRandomKey(serverInfos) {
+            var q = wireguard.generateKeypair();
+            $('#privateKey')[0].value = q.privateKey;
+            $('#publicKey')[0].value = q.publicKey;
+            populateConfigBlocks(serverInfos);
+        }
+
+        window.onload = () => {
+            var ip_param = getQueryVariable('ip');
+
+            $('#privateKey')[0].value = "";
+            $('#publicKey')[0].value = "";
+            $('#ipAddress')[0].value = ip_param != null ? ip_param : "200";
+
+            var serverInfos = getServerConfig();
+
+            $('#button-gen').on('click', function(e) {
+                generateRandomKey(serverInfos);
+            });
+
+            $('#ipAddress').change(() => {
+                populateConfigBlocks(serverInfos);
+            });
+
+            $('#button-download').on('click', () => downloadConfig(serverInfos));
+
+
+            generateRandomKey(serverInfos);
+        };
+
+        /*! SPDX-License-Identifier: GPL-2.0
+         *
+         * Copyright (C) 2015-2020 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
+         */
+
+        (function() {
+            function gf(init) {
+                var r = new Float64Array(16);
+                if (init) {
+                    for (var i = 0; i < init.length; ++i)
+                        r[i] = init[i];
+                }
+                return r;
+            }
+
+            function pack(o, n) {
+                var b, m = gf(),
+                    t = gf();
+                for (var i = 0; i < 16; ++i)
+                    t[i] = n[i];
+                carry(t);
+                carry(t);
+                carry(t);
+                for (var j = 0; j < 2; ++j) {
+                    m[0] = t[0] - 0xffed;
+                    for (var i = 1; i < 15; ++i) {
+                        m[i] = t[i] - 0xffff - ((m[i - 1] >> 16) & 1);
+                        m[i - 1] &= 0xffff;
+                    }
+                    m[15] = t[15] - 0x7fff - ((m[14] >> 16) & 1);
+                    b = (m[15] >> 16) & 1;
+                    m[14] &= 0xffff;
+                    cswap(t, m, 1 - b);
+                }
+                for (var i = 0; i < 16; ++i) {
+                    o[2 * i] = t[i] & 0xff;
+                    o[2 * i + 1] = t[i] >> 8;
+                }
+            }
+
+            function carry(o) {
+                var c;
+                for (var i = 0; i < 16; ++i) {
+                    o[(i + 1) % 16] += (i < 15 ? 1 : 38) * Math.floor(o[i] / 65536);
+                    o[i] &= 0xffff;
+                }
+            }
+
+            function cswap(p, q, b) {
+                var t, c = ~(b - 1);
+                for (var i = 0; i < 16; ++i) {
+                    t = c & (p[i] ^ q[i]);
+                    p[i] ^= t;
+                    q[i] ^= t;
+                }
+            }
+
+            function add(o, a, b) {
+                for (var i = 0; i < 16; ++i)
+                    o[i] = (a[i] + b[i]) | 0;
+            }
+
+            function subtract(o, a, b) {
+                for (var i = 0; i < 16; ++i)
+                    o[i] = (a[i] - b[i]) | 0;
+            }
+
+            function multmod(o, a, b) {
+                var t = new Float64Array(31);
+                for (var i = 0; i < 16; ++i) {
+                    for (var j = 0; j < 16; ++j)
+                        t[i + j] += a[i] * b[j];
+                }
+                for (var i = 0; i < 15; ++i)
+                    t[i] += 38 * t[i + 16];
+                for (var i = 0; i < 16; ++i)
+                    o[i] = t[i];
+                carry(o);
+                carry(o);
+            }
+
+            function invert(o, i) {
+                var c = gf();
+                for (var a = 0; a < 16; ++a)
+                    c[a] = i[a];
+                for (var a = 253; a >= 0; --a) {
+                    multmod(c, c, c);
+                    if (a !== 2 && a !== 4)
+                        multmod(c, c, i);
+                }
+                for (var a = 0; a < 16; ++a)
+                    o[a] = c[a];
+            }
+
+            function clamp(z) {
+                z[31] = (z[31] & 127) | 64;
+                z[0] &= 248;
+            }
+
+            function generatePublicKey(privateKey) {
+                var r, z = new Uint8Array(32);
+                var a = gf([1]),
+                    b = gf([9]),
+                    c = gf(),
+                    d = gf([1]),
+                    e = gf(),
+                    f = gf(),
+                    _121665 = gf([0xdb41, 1]),
+                    _9 = gf([9]);
+                for (var i = 0; i < 32; ++i)
+                    z[i] = privateKey[i];
+                clamp(z);
+                for (var i = 254; i >= 0; --i) {
+                    r = (z[i >>> 3] >>> (i & 7)) & 1;
+                    cswap(a, b, r);
+                    cswap(c, d, r);
+                    add(e, a, c);
+                    subtract(a, a, c);
+                    add(c, b, d);
+                    subtract(b, b, d);
+                    multmod(d, e, e);
+                    multmod(f, a, a);
+                    multmod(a, c, a);
+                    multmod(c, b, e);
+                    add(e, a, c);
+                    subtract(a, a, c);
+                    multmod(b, a, a);
+                    subtract(c, d, f);
+                    multmod(a, c, _121665);
+                    add(a, a, d);
+                    multmod(c, c, a);
+                    multmod(a, d, f);
+                    multmod(d, b, _9);
+                    multmod(b, e, e);
+                    cswap(a, b, r);
+                    cswap(c, d, r);
+                }
+                invert(c, c);
+                multmod(a, a, c);
+                pack(z, a);
+                return z;
+            }
+
+            function generatePresharedKey() {
+                var privateKey = new Uint8Array(32);
+                window.crypto.getRandomValues(privateKey);
+                return privateKey;
+            }
+
+            function generatePrivateKey() {
+                var privateKey = generatePresharedKey();
+                clamp(privateKey);
+                return privateKey;
+            }
+
+            function encodeBase64(dest, src) {
+                var input = Uint8Array.from([(src[0] >> 2) & 63, ((src[0] << 4) | (src[1] >> 4)) & 63, ((src[1] << 2) | (src[2] >> 6)) & 63, src[2] & 63]);
+                for (var i = 0; i < 4; ++i)
+                    dest[i] = input[i] + 65 +
+                    (((25 - input[i]) >> 8) & 6) -
+                    (((51 - input[i]) >> 8) & 75) -
+                    (((61 - input[i]) >> 8) & 15) +
+                    (((62 - input[i]) >> 8) & 3);
+            }
+
+            function keyToBase64(key) {
+                var i, base64 = new Uint8Array(44);
+                for (i = 0; i < 32 / 3; ++i)
+                    encodeBase64(base64.subarray(i * 4), key.subarray(i * 3));
+                encodeBase64(base64.subarray(i * 4), Uint8Array.from([key[i * 3 + 0], key[i * 3 + 1], 0]));
+                base64[43] = 61;
+                return String.fromCharCode.apply(null, base64);
+            }
+
+            window.wireguard = {
+                generateKeypair: function() {
+                    var privateKey = generatePrivateKey();
+                    var publicKey = generatePublicKey(privateKey);
+                    return {
+                        publicKey: keyToBase64(publicKey),
+                        privateKey: keyToBase64(privateKey)
+                    };
+                }
+            };
+        })();
+    </script>
+</body>
+
+</html>
