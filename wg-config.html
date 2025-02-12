@@ -78,7 +78,7 @@
         }
 
         function getServerConfig() {
-            const key = 'server-config';
+            const key = 'server-config-v2';
             const serverDataStored = localStorage.getItem(key);
             if (serverDataStored != null)
                 return JSON.parse(serverDataStored);
@@ -96,18 +96,12 @@
             var privateKey = $('#privateKey')[0].value;
             return `[Interface]
 PrivateKey = ${privateKey}
-ListenPort = 51820
-Address = 10.6.6.${ip}/32
+Address = 10.5.1.${ip}/32
 
 [Peer]
-PublicKey = ${serverInfos.VPS.publicKey}
-AllowedIPs = 10.6.7.0/24
-Endpoint = ${serverInfos.VPS.endpoint}
-
-[Peer]
-PublicKey = ${serverInfos.HomeServer.publicKey}
-AllowedIPs = 10.6.8.0/24
-Endpoint = ${serverInfos.HomeServer.endpoint}
+PublicKey = ${serverInfos.publicKey}
+AllowedIPs = 10.6.0.0/16,10.5.1.1/32
+Endpoint = ${serverInfos.publicEndpoint}
 `;
         }
 
@@ -118,7 +112,7 @@ Endpoint = ${serverInfos.HomeServer.endpoint}
             $("#config-disp-client")[0].innerHTML = clientConfig;
             $("#config-disp-server")[0].innerHTML = `[Peer]
 PublicKey = ${publicKey}
-AllowedIPs = 10.6.6.${ip}/32`;
+AllowedIPs = 10.5.1.${ip}/32`;
 
             $('#client-config-qr')[0].innerHTML = '';
             QrCreator.render({
